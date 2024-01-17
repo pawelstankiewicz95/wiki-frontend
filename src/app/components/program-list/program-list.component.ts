@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Program } from '../../models/program';
+import { ProgramService } from '../../services/program.service';
 
 @Component({
   selector: 'app-program-list',
@@ -9,4 +11,15 @@ import { Component } from '@angular/core';
 })
 export class ProgramListComponent {
 
+  public programs: Program[] = [];
+
+  constructor(private programService: ProgramService) { }
+
+  ngOnInit(): void {
+    this.getPrograms();
+  }
+
+  public getPrograms(): void {
+    this.programService.getPrograms().subscribe((response: Program[]) => this.programs = response);
+  }
 }
