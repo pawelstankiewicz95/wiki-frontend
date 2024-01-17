@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterOutlet } from '@angular/router';
+import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
+import { ProgramListComponent } from './components/program-list/program-list.component'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [RouterOutlet, TopNavBarComponent, ProgramListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
