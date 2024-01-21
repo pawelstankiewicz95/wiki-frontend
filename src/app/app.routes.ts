@@ -4,7 +4,8 @@ import { CategoryListComponent } from './components/category-list/category-list.
 
 export const routes: Routes = [  
 { path: 'home', component: HomeComponent },
+{ path: 'program/:programId', component: CategoryListComponent },
 { path: '', component: HomeComponent },
 { path: '**', component: HomeComponent },
-{ path: 'categories/:programId', component: CategoryListComponent },
+
 ];
