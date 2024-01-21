@@ -1,1 +1,5 @@
-<p>category-list works!</p>
+<div class="d-flex justify-content-center">
+@for (category of categories; track $index) {
+    <p>{{$index+1}}. {{category.name}}</p>
+}
+</div>
