@@ -6,7 +6,7 @@
       <div class="justify-content-center">
             @for(program of programs; track program.id){
             <button class="btn btn-transparent">
-                <a routerLink="category/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
+                <a routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
 
             </button>
             }
