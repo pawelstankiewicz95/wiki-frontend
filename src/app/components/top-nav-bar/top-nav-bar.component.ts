@@ -25,8 +25,4 @@ export class TopNavBarComponent {
     this.programService.getPrograms().subscribe((response: Program[]) => this.programs = response);
   }
 
-  onProgramClick(programId: number) {
-    this.router.navigate(['/categories', programId]);
-  }
-
 }
