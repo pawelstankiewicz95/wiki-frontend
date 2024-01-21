@@ -1,21 +1,22 @@
 <nav class="navbar navbar-light shadow-sm  mb-3 bg-body p-3 justify-content-between">
-      <div class="me-2">
+      <div class="col">
         <a routerLink="/"><img src="/assets/images/logo.webp" alt="placeholder"></a>
       </div>
     
-      <div class="justify-content-center">
+      <div class="col justify-content-between">
             @for(program of programs; track program.id){
-            <button class="btn btn-transparent">
+            <button class="btn btn-transparent border-0">
                 <a routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
-
             </button>
             }
     </div>
 
-    <form class="d-flex">
-        <input #searchInput  class="form-control" type="text"
-            placeholder="Wyszukaj...">
-        <button class="btn btn-transparent border-0" type="submit"><button class="btn btn-transparent">Wyszukaj</button>
-        </button>
-      </form>
+    <div class="col">
+    <form>
+        <div class="input-group">
+        <input #searchInput  class="form-control" type="text" placeholder="Wyszukaj...">
+        <button class="btn btn-outline-dark" type="submit">Wyszukaj</button>
+      </div>
+    </form>
+    </div>
 </nav>
