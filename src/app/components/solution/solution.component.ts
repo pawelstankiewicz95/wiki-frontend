@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Solution } from '../../models/solution';
+import { SolutionService } from '../../services/solution.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-solution',
@@ -9,4 +12,19 @@ import { Component } from '@angular/core';
 })
 export class SolutionComponent {
 
+  
+  public solutions: Solution[] = [];
+  hasSolutionId: boolean = false;
+  solutionId: number = 1;
+
+  constructor(private solutionService: SolutionService,  private route: ActivatedRoute){};
+
+  ngOnInit(): void {
+    this.getSolutionsBySubjectId();
+  }
+
+  public getSolutionsBySubjectId(): void {
+    this.solutionId = +this.route.snapshot.paramMap.get('subjectId')!;
+    this.solutionService.getSolutionsBySubjectId(this.solutionId).subscribe((response: Solution[]) => this.solutions = response);
+  }
 }
