@@ -6,7 +6,7 @@ import { SubjectListComponent } from './components/subject-list/subject-list.com
 export const routes: Routes = [  
 { path: 'home', component: HomeComponent },
 { path: 'program/:programId', component: CategoryListComponent },
-{ path: 'category/:categoryId', component: SubjectListComponent },
+{ path: 'program/:programId/category/:categoryId', component: SubjectListComponent },
 { path: '', component: HomeComponent },
 { path: '**', component: HomeComponent },
 
