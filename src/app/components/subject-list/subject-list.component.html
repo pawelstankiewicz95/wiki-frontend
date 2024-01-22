@@ -1,3 +1,7 @@
-@for (subject of subjects; track $index) {
-    <a routerLink="subject/{{ subject.id }}" routerLinkActive="active"><p>{{$index+1}}. {{subject.title}}</p></a>
-}
+<div class="d-flex justify-content-center">
+    @for (subject of subjects; track $index) {
+    <a routerLink="subject/{{ subject.id }}" routerLinkActive="active">
+        <p>{{$index+1}}. {{subject.title}}</p>
+    </a>
+    }
+</div>
