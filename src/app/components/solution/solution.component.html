@@ -1,5 +1,7 @@
 <div class="d-flex justify-content-center">
     @for (solution of solutions; track $index) {
-    <p>{{$index+1}}. {{solution.description}}</p>
+    <p>{{solution.solutionSubject.title}}
+    <br/>
+    {{solution.description}}</p>
     }
 </div>
