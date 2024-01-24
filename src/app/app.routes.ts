@@ -6,6 +6,7 @@ import { SolutionComponent } from './components/solution/solution.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
+    { path: 'search-subject/:searchParam', component: SubjectListComponent },
     { path: 'program/:programId', component: CategoryListComponent },
     { path: 'program/:programId/category/:categoryId', component: SubjectListComponent },
     { path: 'program/:programId/category/:categoryId/subject/:subjectId', component: SolutionComponent },
