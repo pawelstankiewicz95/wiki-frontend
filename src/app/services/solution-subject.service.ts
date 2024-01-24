@@ -15,4 +15,8 @@ export class SolutionSubjectService {
   public getSubjectsByCategoryId(categoryId: number): Observable<SolutionSubject[]> {
     return this.httpClient.get<SolutionSubject[]>(`${this.apiServerUrl}/subjects-by-category-id/${categoryId}`);
   }
+
+  public getSubjectsByTitleLike(title: string){
+    return this.httpClient.get<SolutionSubject[]>(`${this.apiServerUrl}/search-by-title`, { params: { title: title } });
+  }
 }
