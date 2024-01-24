@@ -13,8 +13,10 @@ import { SolutionSubjectService } from '../../services/solution-subject.service'
 export class SubjectListComponent {
 
   public subjects: SolutionSubject[] = [];
-  hasProgramId: boolean = false;
-  programId: number = 1;
+  hasSearchParameter: boolean = false;
+  hasCategoryId: boolean = false;
+  categoryId: number = 1;
+  searchValue: string = "";
 
   constructor(private subjectService: SolutionSubjectService,  private route: ActivatedRoute){};
 
@@ -22,8 +24,24 @@ export class SubjectListComponent {
     this.getSubjectsByCategoryId();
   }
 
+  public handleShowingSubjects() {
+    this.hasCategoryId = this.route.snapshot.paramMap.has('id');
+    this.hasSearchParameter = this.route.snapshot.paramMap.has('searchParam');
+    if (this.hasSearchParameter) {
+      this.searchSubjectByTitle();
+    }
+    if (this.hasCategoryId) {
+      this.getSubjectsByCategoryId();
+    }
+  }
+
   public getSubjectsByCategoryId(): void {
-    this.programId = +this.route.snapshot.paramMap.get('categoryId')!;
-    this.subjectService.getSubjectsByCategoryId(this.programId).subscribe((response: SolutionSubject[]) => this.subjects = response);
+    this.categoryId = +this.route.snapshot.paramMap.get('categoryId')!;
+    this.subjectService.getSubjectsByCategoryId(this.categoryId).subscribe((response: SolutionSubject[]) => this.subjects = response);
+  }
+
+  public searchSubjectByTitle() {
+    this.searchValue = this.route.snapshot.paramMap.get('searchParam')!;
+    this.subjectService.getSubjectsByTitleLike(this.searchValue).subscribe((response: SolutionSubject[]) => this.subjects = response);
   }
 }
