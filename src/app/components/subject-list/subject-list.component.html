@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex flex-column align-items-center">
     @for (subject of subjects; track $index) {
     <a routerLink="subject/{{ subject.id }}" routerLinkActive="active">
         <p>{{$index+1}}. {{subject.title}}</p>
