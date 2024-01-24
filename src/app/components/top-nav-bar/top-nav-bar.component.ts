@@ -25,4 +25,8 @@ export class TopNavBarComponent {
     this.programService.getPrograms().subscribe((response: Program[]) => this.programs = response);
   }
 
+  public onSearchSubmit(searchInput : string) {
+    this.router.navigateByUrl(`/search-subject/${searchInput}`)
+  }
+
 }
