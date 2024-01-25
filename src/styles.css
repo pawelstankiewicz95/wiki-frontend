@@ -1,10 +1,21 @@
-@import '~quill/dist/quill.core.css';
-@import '~quill/dist/quill.snow.css';
 a {
     color: black;
     text-decoration: none;
 }
-a:hover{
+
+a:hover {
     color: black;
     text-decoration: underline;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    background-color: #a5324d;
+    border: #a5324d;
+}
+.btn-primary:hover{
+    background-color: #992540;
 }
