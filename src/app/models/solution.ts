@@ -5,6 +5,6 @@ export interface Solution {
     // user: User; //to do
     solutionSubject: SolutionSubject;
     description: string;
-    timeCreated: string;
-    timeUpdated: string;
+    timeCreated: Date;
+    timeUpdated: Date;
 }
