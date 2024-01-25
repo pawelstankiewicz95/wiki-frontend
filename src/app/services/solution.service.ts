@@ -15,4 +15,8 @@ export class SolutionService {
   public getSolutionsBySubjectId(subjectId: number): Observable<Solution[]> {
     return this.httpClient.get<Solution[]>(`${this.apiServerUrl}/solutions-by-subject-id/${subjectId}`);
   }
+
+  public saveSolution(solution: Solution): Observable<Solution> {
+    return this.httpClient.post<Solution>(this.apiServerUrl, solution);
+  }
 }
