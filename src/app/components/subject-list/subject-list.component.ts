@@ -21,11 +21,16 @@ export class SubjectListComponent {
   constructor(private subjectService: SolutionSubjectService,  private route: ActivatedRoute){};
 
   ngOnInit(): void {
-    this.getSubjectsByCategoryId();
+    this.handleShowingSubjects();
+    this.route.paramMap.subscribe(params => {
+      this.categoryId = +params.get('categoryId')!
+      this.searchValue = params.get('searchValue')!
+      this.handleShowingSubjects();
+    });
   }
 
   public handleShowingSubjects() {
-    this.hasCategoryId = this.route.snapshot.paramMap.has('id');
+    this.hasCategoryId = this.route.snapshot.paramMap.has('categoryId');
     this.hasSearchParameter = this.route.snapshot.paramMap.has('searchParam');
     if (this.hasSearchParameter) {
       this.searchSubjectByTitle();

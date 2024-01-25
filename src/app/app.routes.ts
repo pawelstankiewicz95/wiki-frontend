@@ -10,6 +10,7 @@ export const routes: Routes = [
     { path: 'program/:programId', component: CategoryListComponent },
     { path: 'program/:programId/category/:categoryId', component: SubjectListComponent },
     { path: 'program/:programId/category/:categoryId/subject/:subjectId', component: SolutionComponent },
+    { path: 'search-subject/subject/:subjectId', component: SolutionComponent },
     { path: '', component: HomeComponent },
     { path: '**', component: HomeComponent },
 
