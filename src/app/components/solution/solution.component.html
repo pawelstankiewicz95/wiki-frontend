@@ -4,4 +4,8 @@
     
     <p>{{solution.description}}</p>
     }
+
+    <button  class="btn btn-primary" routerLink="new-solution/"  routerLinkActive="hide" [queryParams]="{ subjectId: solutions.at(0)?.solutionSubject?.id}">Dodaj</button>
+
+    <router-outlet></router-outlet>
 </div>
