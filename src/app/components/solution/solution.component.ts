@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Solution } from '../../models/solution';
 import { SolutionService } from '../../services/solution.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-solution',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './solution.component.html',
   styleUrl: './solution.component.css'
 })
