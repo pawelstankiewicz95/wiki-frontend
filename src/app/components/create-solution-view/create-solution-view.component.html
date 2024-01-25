@@ -1,6 +1,7 @@
 <div id="quill">
-    <p>Content *</p>
-    <quill-editor class="editorStyle" placeholder="Enter Text"
-        formControlName="editor">
-    </quill-editor>
+    <form [formGroup]="solutionForm">
+        <quill-editor
+          formControlName="description">
+        </quill-editor>
+    </form>
 </div>
