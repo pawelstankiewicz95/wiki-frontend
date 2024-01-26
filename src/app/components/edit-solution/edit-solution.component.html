@@ -1,1 +1,7 @@
-<p>edit-solution works!</p>
+<div id="quill">
+    <form [formGroup]="solutionForm">
+        <quill-editor
+          formControlName="description">
+        </quill-editor>
+    </form>
+</div>
