@@ -1,6 +1,6 @@
 <div class="d-flex flex-column align-items-center">
     @for (solution of solutions; track $index) {
-    <span class="solution-title mb-3">{{solution.solutionSubject.title}}</span>
+    <span class="solution-title mb-3">{{solution.solutionSubject?.title}}</span>
     
     <p>{{solution.description}}</p>
     }
