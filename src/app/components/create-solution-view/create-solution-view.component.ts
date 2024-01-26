@@ -38,13 +38,12 @@ export class CreateSolutionViewComponent {
       if (!isNaN(solutionSubjectId)) {
         let solution: Solution = {
           id: 0,
-          solutionSubjectId: solutionSubjectId,
           description: formValues.solution.description,
           timeCreated: new Date(),
           timeUpdated: new Date()
         };
 
-        this.solutionService.saveSolution(solution).subscribe({
+        this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
           next: (response) => console.log(response),
           error: (error) => console.log(error)
         });
