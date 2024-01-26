@@ -12,11 +12,16 @@ export class SolutionService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public getSolutionById(solutionId: number): Observable<Solution> {
+    return this.httpClient.get<Solution>(`${this.apiServerUrl}/solutions/${solutionId}`);
+  }
+
   public getSolutionsBySubjectId(subjectId: number): Observable<Solution[]> {
     return this.httpClient.get<Solution[]>(`${this.apiServerUrl}/solutions-by-subject-id/${subjectId}`);
   }
 
-  public saveSolution(solution: Solution): Observable<Solution> {
-    return this.httpClient.post<Solution>(this.apiServerUrl, solution);
+  public saveSolution(subjectId: number, solution: Solution): Observable<Solution> {
+    const url = `${this.apiServerUrl}?subjectId=${subjectId}`;
+    return this.httpClient.post<Solution>(url, solution);
   }
 }
