@@ -37,13 +37,8 @@ export class CreateSolutionViewComponent {
       const solutionSubjectId = +params['subjectId'];
       if (!isNaN(solutionSubjectId)) {
         let solution: Solution = {
-          solutionSubject: {
-            title: formValues.solution.title,
-            id: solutionSubjectId,
-            timeCreated: new Date(),
-            timeUpdated: new Date(),
-          },
           id: 0,
+          solutionSubjectId: solutionSubjectId,
           description: formValues.solution.description,
           timeCreated: new Date(),
           timeUpdated: new Date()
