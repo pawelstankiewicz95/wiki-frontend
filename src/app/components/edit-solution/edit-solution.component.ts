@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { SolutionService } from '../../services/solution.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Solution } from '../../models/solution';
 
 @Component({
   selector: 'app-edit-solution',
   standalone: true,
-  imports: [QuillModule, ReactiveFormsModule],
+  imports: [QuillModule, ReactiveFormsModule, RouterModule],
   templateUrl: './edit-solution.component.html',
   styleUrl: './edit-solution.component.css'
 })
@@ -18,9 +18,17 @@ export class EditSolutionComponent {
 
   solution!: Solution;
   solutionForm!: FormGroup;
+  solutionId!: number;
 
   ngOnInit() {
-    this.handleFormGroup();
+    this.activatedRoute.paramMap.subscribe(params => {
+      if (params.has('solutionId')) {
+        this.solutionId = +params.get('solutionId')!;
+        this.solutionService.getSolutionById(this.solutionId).subscribe((response: Solution) => this.solution = response);
+        this.handleFormGroup()
+        this.bindProductForm();
+      }
+    });
   }
 
   handleFormGroup() {
@@ -36,13 +44,13 @@ export class EditSolutionComponent {
       const solutionSubjectId = +params['subjectId'];
       if (!isNaN(solutionSubjectId)) {
         let solution: Solution = {
-          id: 0,
+          id: this.solution.id,
           description: formValues.solution.description,
-          timeCreated: new Date(),
+          timeCreated: this.solution.timeCreated,
           timeUpdated: new Date()
         };
 
-        this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
+        this.solutionService.updateSolution(solutionSubjectId, solution).subscribe({
           next: (response) => console.log(response),
           error: (error) => console.log(error)
         });
@@ -52,8 +60,12 @@ export class EditSolutionComponent {
     });
   }
 
-  public getPrograms(): void {
-    this.solutionService.getSolutionById().subscribe((response: Solution) => this.solution = response);
-  }
+  bindProductForm() {
+    setTimeout(() => {
+      this.solutionForm.patchValue({
+        description: this.solution.description
+      });
+    });
 
+}
 }
