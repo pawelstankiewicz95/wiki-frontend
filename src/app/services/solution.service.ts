@@ -24,4 +24,9 @@ export class SolutionService {
     const url = `${this.apiServerUrl}?subjectId=${subjectId}`;
     return this.httpClient.post<Solution>(url, solution);
   }
+
+  public updateSolution(subjectId: number, solution: Solution): Observable<Solution> {
+    const url = `${this.apiServerUrl}?subjectId=${subjectId}`;
+    return this.httpClient.put<Solution>(url, solution);
+  }
 }
