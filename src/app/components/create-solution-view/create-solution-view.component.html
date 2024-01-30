@@ -1,7 +1,11 @@
 <div id="quill">
     <form [formGroup]="solutionForm">
         <quill-editor
-          formControlName="description">
-        </quill-editor>
+          formControlName="description" class="editorStyle">
+          
+    </quill-editor>
+    <button class ="btn btn-primary mt-2" (click)="onSubmit()">Zapisz</button>  
     </form>
+    <br/>
+    
 </div>
