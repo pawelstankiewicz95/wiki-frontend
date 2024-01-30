@@ -19,6 +19,11 @@ export class CreateSolutionViewComponent {
   constructor(private formBuilder: FormBuilder, private solutionService: SolutionService, private activatedRoute: ActivatedRoute) { }
 
   solutionForm!: FormGroup;
+  
+  editorStyle = {
+    height: '300px',
+    backgroundColor: '#ffffff'
+  }
 
   ngOnInit() {
     this.handleFormGroup();
@@ -42,9 +47,11 @@ export class CreateSolutionViewComponent {
           timeCreated: new Date(),
           timeUpdated: new Date()
         };
-
+        console.log(solution);
         this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
-          next: (response) => console.log(response),
+          next: (response) => {
+            window.location.replace(window.location.href);
+            console.log(response)},
           error: (error) => console.log(error)
         });
       } else {
