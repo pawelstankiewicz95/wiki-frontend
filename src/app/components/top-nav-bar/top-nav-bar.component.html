@@ -15,7 +15,8 @@
     <form>
         <div class="input-group">
         <input [(ngModel)]="searchValue" name="searchBox" #searchInput (keyup.enter)="onSearchSubmit(searchInput.value) " class="form-control" type="text" placeholder="Wyszukaj...">
-        <button class="btn btn-transparent border-0" (click)="onSearchSubmit(searchInput.value)" type="submit">Wyszukaj</button>
+        <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i class="bi bi-search"></i>
+        </button>
       </div>
     </form>
     </div>
