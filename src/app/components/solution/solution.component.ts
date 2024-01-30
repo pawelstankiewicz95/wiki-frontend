@@ -18,8 +18,8 @@ export class SolutionComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      if (params.has('solutionId')) {
-        this.solutionId = +params.get('solutionId')!;
+      if (params.has('subjectId')) {
+        this.solutionId = +params.get('subjectId')!;
         this.getSolutionsBySubjectId();
       }
     });
