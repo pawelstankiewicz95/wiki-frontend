@@ -13,7 +13,7 @@ export class SolutionService {
   constructor(private httpClient: HttpClient) { }
 
   public getSolutionById(solutionId: number): Observable<Solution> {
-    return this.httpClient.get<Solution>(`${this.apiServerUrl}/solutions/${solutionId}`);
+    return this.httpClient.get<Solution>(`${this.apiServerUrl}/${solutionId}`);
   }
 
   public getSolutionsBySubjectId(subjectId: number): Observable<Solution[]> {
@@ -25,8 +25,8 @@ export class SolutionService {
     return this.httpClient.post<Solution>(url, solution);
   }
 
-  public updateSolution(subjectId: number, solution: Solution): Observable<Solution> {
-    const url = `${this.apiServerUrl}?subjectId=${subjectId}`;
+  public updateSolution(solution: Solution): Observable<Solution> {
+    const url = `${this.apiServerUrl}`;
     return this.httpClient.put<Solution>(url, solution);
   }
 }
