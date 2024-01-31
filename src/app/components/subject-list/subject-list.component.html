@@ -10,16 +10,16 @@
         </div>
     
         @for (subject of subjects; track $index) {
-        <div class="row border shadow-sm mb-2">
+        <div class="row border shadow-sm mb-2 p-2">
             <div class="col-2">01.01.2024</div>
             <div class="col-8">@if (hasCategoryId) {
                 <a routerLink="subject/{{ subject.id }}" routerLinkActive="active">
-                    <p>{{$index+1}}. {{subject.title}}</p>
+                    {{$index+1}}. {{subject.title}}
                 </a>
                 }
                 @if (hasSearchParameter) {
                 <a routerLink="/search-subject/subject/{{ subject.id }}" routerLinkActive="active">
-                    <p>{{$index+1}}. {{subject.title}}</p>
+                    {{$index+1}}. {{subject.title}}
                 </a>
                 }
             </div>

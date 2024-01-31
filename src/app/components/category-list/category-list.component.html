@@ -1,7 +1,7 @@
 <div class="d-flex flex-column align-items-center">
      @for (category of categories; track $index) {
-     <div>
-          <a routerLink="category/{{ category.id }}" routerLinkActive="active"><p>{{category.name}}</p></a>
+     <div class="border shadow-sm mb-2 p-3 text-center align-items-center">
+          <a routerLink="category/{{ category.id }}" routerLinkActive="active">{{category.name}}</a>
      </div>
      }
 </div>
