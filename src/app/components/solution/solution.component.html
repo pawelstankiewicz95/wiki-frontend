@@ -2,14 +2,14 @@
     <span class="solution-title mb-3">{{solutions.at(0)?.solutionSubject?.title}}</span>
 
     @for (solution of solutions; track $index) {
-        <div class="card mb-2 shadow-sm w-75">
-    <quill-view [content]="solution.description" format="html" theme="snow" class="card-body"></quill-view>
-    <div class="position-absolute bottom-0 end-0"><span>user name</span></div>
+    <div class="card mb-2 shadow-sm w-75">
+        <quill-view [content]="solution.description" format="html" theme="snow" class="card-body"></quill-view>
+        <div class="position-absolute bottom-0 end-0"><span>user name</span></div>
     </div>
     }
 
     <button class="btn btn-primary mb-2" routerLink="new-solution/"  routerLinkActive="hide" [queryParams]="{ subjectId: solutions.at(0)?.solutionSubject?.id}">Dodaj</button>
     <div class="w-75">
-    <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
     </div>
 </div>
