@@ -21,9 +21,9 @@ export class EditSolutionComponent {
   solutionId!: number;
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
-      if (params.has('solutionId')) {
-        this.solutionId = +params.get('solutionId')!;
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.hasOwnProperty('solutionId')) {
+        this.solutionId = +params['solutionId'];;
         this.solutionService.getSolutionById(this.solutionId).subscribe((response: Solution) => this.solution = response);
         this.handleFormGroup()
         this.bindProductForm();
