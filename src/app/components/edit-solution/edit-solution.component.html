@@ -1,7 +1,9 @@
 <div id="quill">
     <form [formGroup]="solutionForm">
         <quill-editor
-          formControlName="description">
+          formControlName="description"
+          [(ngModel)]="solution.description">
         </quill-editor>
     </form>
+  
 </div>

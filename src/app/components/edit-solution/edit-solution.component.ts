@@ -28,6 +28,8 @@ export class EditSolutionComponent {
         this.handleFormGroup()
         this.bindProductForm();
       }
+      else{console.error('Invalid solutionId');
+      }
     });
   }
 
@@ -40,9 +42,8 @@ export class EditSolutionComponent {
   onSubmit() {
     const formValues = this.solutionForm.value;
 
-    this.activatedRoute.queryParams.subscribe(params => {
-      const solutionSubjectId = +params['subjectId'];
-      if (!isNaN(solutionSubjectId)) {
+    this.activatedRoute.queryParams.subscribe
+      
         let solution: Solution = {
           id: this.solution.id,
           description: formValues.solution.description,
@@ -50,15 +51,12 @@ export class EditSolutionComponent {
           timeUpdated: new Date()
         };
 
-        this.solutionService.updateSolution(solutionSubjectId, solution).subscribe({
+        this.solutionService.updateSolution(solution).subscribe({
           next: (response) => console.log(response),
           error: (error) => console.log(error)
         });
-      } else {
-        console.error('Invalid subjectId');
+
       }
-    });
-  }
 
   bindProductForm() {
     setTimeout(() => {
