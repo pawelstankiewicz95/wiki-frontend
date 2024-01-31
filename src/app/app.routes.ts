@@ -4,6 +4,7 @@ import { CategoryListComponent } from './components/category-list/category-list.
 import { SubjectListComponent } from './components/subject-list/subject-list.component';
 import { SolutionComponent } from './components/solution/solution.component';
 import { CreateSolutionViewComponent } from './components/create-solution-view/create-solution-view.component';
+import { EditSolutionComponent } from './components/edit-solution/edit-solution.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
         component: SolutionComponent,
         children: [
             { path: 'new-solution', component: CreateSolutionViewComponent },
+            { path: 'edit-solution/:solutionId', component: EditSolutionComponent },
         ]
     },
     {
@@ -22,6 +24,7 @@ export const routes: Routes = [
         component: SolutionComponent,
         children: [
             { path: 'new-solution', component: CreateSolutionViewComponent },
+            { path: 'edit-solution/:solutionId', component: EditSolutionComponent },
         ]
     },
     { path: 'new-solution', component: CreateSolutionViewComponent },
