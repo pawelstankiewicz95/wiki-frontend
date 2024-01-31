@@ -1,17 +1,32 @@
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-between justify-content-center">
+    <div>
     @if (subjects.length === 0) {
         <span>Brak wyników.</span>
-    }
-    @for (subject of subjects; track $index) {
-        @if (hasCategoryId) {
-        <a routerLink="subject/{{ subject.id }}" routerLinkActive="active">
-            <p>{{$index+1}}. {{subject.title}}</p>
-        </a>
         }
-        @if (hasSearchParameter) {
-        <a routerLink="/search-subject/subject/{{ subject.id }}" routerLinkActive="active">
-            <p>{{$index+1}}. {{subject.title}}</p>
-        </a>
+        <div class="row border mb-1">
+            <div class="col-2"><span>Data</span></div>
+            <div class="col-8"><span>Temat</span></div>
+            <div class="col-2"><span>Autor</span></div>
+        </div>
+    
+        @for (subject of subjects; track $index) {
+        <div class="row border shadow-sm mb-2">
+            <div class="col-2">01.01.2024</div>
+            <div class="col-8">@if (hasCategoryId) {
+                <a routerLink="subject/{{ subject.id }}" routerLinkActive="active">
+                    <p>{{$index+1}}. {{subject.title}}</p>
+                </a>
+                }
+                @if (hasSearchParameter) {
+                <a routerLink="/search-subject/subject/{{ subject.id }}" routerLinkActive="active">
+                    <p>{{$index+1}}. {{subject.title}}</p>
+                </a>
+                }
+            </div>
+            <div class="col-2">user name</div>
+        </div>
         }
-    }
+    </div>
+    
+
 </div>
