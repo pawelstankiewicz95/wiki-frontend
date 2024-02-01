@@ -4,7 +4,9 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 import { QuillModule } from 'ngx-quill';
 import { Solution } from '../../models/solution';
 import { SolutionService } from '../../services/solution.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-create-solution-view',
@@ -16,12 +18,17 @@ import { ActivatedRoute } from '@angular/router';
 export class CreateSolutionViewComponent {
 
 
-  constructor(private formBuilder: FormBuilder, private solutionService: SolutionService, private activatedRoute: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder,
+    private solutionService: SolutionService,
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+    private router: Router) { }
 
   solutionForm!: FormGroup;
-  
+
   editorStyle = {
     height: '300px',
+    width: '100%',
     backgroundColor: '#ffffff'
   }
 
@@ -50,8 +57,12 @@ export class CreateSolutionViewComponent {
         console.log(solution);
         this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
           next: (response) => {
-            window.location.replace(window.location.href);
-            console.log(response)},
+            const url = this.router.url;    
+            let updatedUrl = url.substring(0, url.lastIndexOf('/'));
+            this.router.navigate([updatedUrl]) .then(() => {
+              window.location.reload();
+            });
+          },
           error: (error) => console.log(error)
         });
       } else {
