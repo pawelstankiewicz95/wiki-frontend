@@ -4,6 +4,7 @@ import { QuillModule } from 'ngx-quill';
 import { SolutionService } from '../../services/solution.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Solution } from '../../models/solution';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-solution',
@@ -14,7 +15,10 @@ import { Solution } from '../../models/solution';
 })
 export class EditSolutionComponent {
 
-  constructor(private formBuilder: FormBuilder, private solutionService: SolutionService, private activatedRoute: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder,
+    private solutionService: SolutionService,
+    private activatedRoute: ActivatedRoute,
+    private location: Location) { }
 
   solution!: Solution;
   solutionForm!: FormGroup;
@@ -24,11 +28,13 @@ export class EditSolutionComponent {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params.hasOwnProperty('solutionId')) {
         this.solutionId = +params['solutionId'];;
-        this.solutionService.getSolutionById(this.solutionId).subscribe((response: Solution) => this.solution = response);
+        this.solutionService.getSolutionById(this.solutionId).subscribe((response: Solution) => {this.solution = response
+        console.log(this.solution)});
         this.handleFormGroup()
-        this.bindProductForm();
+        this.bindSolutionForm();
       }
-      else{console.error('Invalid solutionId');
+      else {
+        console.error('Invalid solutionId');
       }
     });
   }
@@ -43,27 +49,31 @@ export class EditSolutionComponent {
     const formValues = this.solutionForm.value;
 
     this.activatedRoute.queryParams.subscribe
-      
-        let solution: Solution = {
-          id: this.solution.id,
-          description: formValues.solution.description,
-          timeCreated: this.solution.timeCreated,
-          timeUpdated: new Date()
-        };
 
-        this.solutionService.updateSolution(solution).subscribe({
-          next: (response) => console.log(response),
-          error: (error) => console.log(error)
-        });
+    let solution: Solution = {
+      id: this.solution.id,
+      description: formValues.description,
+      timeCreated: this.solution.timeCreated,
+      timeUpdated: new Date(),
+      solutionSubject: this.solution.solutionSubject
+    };
 
-      }
+    this.solutionService.updateSolution(solution).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.location.back();
+      },
+      error: (error) => console.log(error)
+    });
 
-  bindProductForm() {
+  }
+
+  bindSolutionForm() {
     setTimeout(() => {
       this.solutionForm.patchValue({
         description: this.solution.description
       });
     });
 
-}
+  }
 }
