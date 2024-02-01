@@ -11,6 +11,7 @@ export const routes: Routes = [
     { path: 'search-subject/:searchParam', component: SubjectListComponent },
     { path: 'program/:programId', component: CategoryListComponent },
     { path: 'program/:programId/category/:categoryId', component: SubjectListComponent },
+    { path: 'program/:programId/category/:categoryId/subject/:subjectId/edit-solution', component: EditSolutionComponent },
     {
         path: 'search-subject/subject/:subjectId',
         component: SolutionComponent,
@@ -19,12 +20,13 @@ export const routes: Routes = [
             { path: 'edit-solution/:solutionId', component: EditSolutionComponent },
         ]
     },
+    { path: 'search-subject/subject/:subjectId/edit-solution', component: EditSolutionComponent },
     {
         path: 'program/:programId/category/:categoryId/subject/:subjectId',
         component: SolutionComponent,
         children: [
             { path: 'new-solution', component: CreateSolutionViewComponent },
-            { path: 'edit-solution/:solutionId', component: EditSolutionComponent },
+       //     { path: 'edit-solution/:solutionId', component: EditSolutionComponent },
         ]
     },
     { path: 'new-solution', component: CreateSolutionViewComponent },
