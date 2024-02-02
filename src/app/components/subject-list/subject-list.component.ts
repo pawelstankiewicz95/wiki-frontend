@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { SolutionSubject } from '../../models/soultionSubject';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SolutionSubjectService } from '../../services/solution-subject.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-subject-list',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, DatePipe],
   templateUrl: './subject-list.component.html',
   styleUrl: './subject-list.component.css'
 })
