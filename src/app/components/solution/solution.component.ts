@@ -3,11 +3,12 @@ import { Solution } from '../../models/solution';
 import { SolutionService } from '../../services/solution.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-solution',
   standalone: true,
-  imports: [RouterModule, QuillModule],
+  imports: [RouterModule, QuillModule, DatePipe],
   templateUrl: './solution.component.html',
   styleUrl: './solution.component.css'
 })
