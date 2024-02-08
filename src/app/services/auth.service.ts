@@ -14,7 +14,7 @@ export class AuthService {
 
     login(username: string, password: string): Observable<string> {
         const credentials = { username, password };
-        return this.http.post<string>(`${this.apiUrl}/authenticate`, credentials);
+        return this.http.post<string>(`${this.apiUrl}authenticate`, credentials);
     }
 
     // Store JWT in local storage
