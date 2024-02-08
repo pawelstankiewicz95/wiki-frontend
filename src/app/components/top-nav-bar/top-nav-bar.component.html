@@ -1,25 +1,27 @@
-<nav class="navbar navbar-light shadow-sm mb-5 bg-body justify-content-between">
-  <div class="container-fluid">
-      <div class="nav-item">
-        <a routerLink="/"><img src="/assets/images/logo.webp" alt="placeholder"></a>
-      </div>
-    
-      <div class="nav-item justify-content-between">
-            @for(program of programs; track program.id){
-            <button class="btn btn-transparent border-0">
-                <a routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
-            </button>
-            }
+<nav class="container-fluid shadow-sm mb-5 bg-body">
+  <div class="row align-items-center justify-content-between pt-2 pb-2">
+    <div class="col-4 text-start">
+      <a routerLink="/"><img src="/assets/images/logo.webp" alt="placeholder"></a>
     </div>
 
-    <div class="nav-item">
-    <form>
+    <div class="col-4">
+      @for(program of programs; track program.id){
+      <a class="me-2" routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
+      }
+    </div>
+
+    <div class="col-4 d-flex align-items-center">
+      <form class="flex-grow-1 me-2">
         <div class="input-group">
-        <input [(ngModel)]="searchValue" name="searchBox" #searchInput (keyup.enter)="onSearchSubmit(searchInput.value) " class="form-control" type="text" placeholder="Wyszukaj...">
-        <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i class="bi bi-search"></i>
-        </button>
-      </div>
-    </form>
+          <input [(ngModel)]="searchValue" name="searchBox" #searchInput
+            (keyup.enter)="onSearchSubmit(searchInput.value)" class="form-control" type="text" placeholder="Wyszukaj...">
+          <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i
+              class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+      <span><a routerLink="">Zaloguj</a></span>
     </div>
-    </div>
+
+  </div>
 </nav>
