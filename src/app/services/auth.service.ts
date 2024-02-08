@@ -1,7 +1,7 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
@@ -17,13 +17,20 @@ export class AuthService {
         return this.http.post<string>(`${this.apiUrl}authenticate`, credentials);
     }
 
-    // Store JWT in local storage
     storeJwtToken(token: string): void {
         localStorage.setItem('jwtToken', token);
     }
 
-    // Retrieve JWT from local storage
     getJwtToken(): string | null {
         return localStorage.getItem('jwtToken');
     }
+
+    logout(): void {
+        localStorage.removeItem('jwtToken');
+      }
+
+    isLoggedIn(): boolean {
+        return !!this.getJwtToken();
+    }
+
 }
