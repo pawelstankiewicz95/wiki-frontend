@@ -5,6 +5,7 @@ import { SubjectListComponent } from './components/subject-list/subject-list.com
 import { SolutionComponent } from './components/solution/solution.component';
 import { CreateSolutionViewComponent } from './components/create-solution-view/create-solution-view.component';
 import { EditSolutionComponent } from './components/edit-solution/edit-solution.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -30,7 +31,7 @@ export const routes: Routes = [
         ]
     },
     { path: 'new-solution', component: CreateSolutionViewComponent },
-    //{ path: 'search-subject/subject/:subjectId', component: SolutionComponent },
+    { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent },
     { path: '**', component: HomeComponent },
 
