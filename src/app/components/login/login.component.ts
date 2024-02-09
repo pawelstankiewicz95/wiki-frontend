@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
   imports: [ReactiveFormsModule],
 })
 export class LoginComponent {
+
   form: FormGroup;
+  error: string = '';
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -31,12 +33,19 @@ export class LoginComponent {
 
     if (val.username && val.password) {
       this.authService.login(val.username, val.password)
-        .subscribe(
-          () => {
-            console.log("User is logged in");
-            this.router.navigateByUrl('/');
+      .subscribe({
+        next: () => {
+          console.log("User is logged in");
+          this.router.navigateByUrl('/');
+        },
+        error: (error) => {
+          if (error.status === 403) {
+            this.error = 'Niepoprawny login lub hasło';
+          } else {
+            this.error = 'Wystąpił błąd. Spróbuj ponownie.';
           }
-        );
+        }
+      });
     }
   }
 }
