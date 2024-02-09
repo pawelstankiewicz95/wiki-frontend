@@ -1,27 +1,26 @@
-<nav class="container-fluid shadow-sm mb-5 bg-body">
-  <div class="row align-items-center justify-content-between pt-2 pb-2">
-    <div class="col-3 text-start">
-      <a routerLink="/"><img src="/assets/images/logo.webp" alt="placeholder"></a>
+<nav class="shadow-sm mb-5 bg-body">
+  <div class="row pt-2 pb-2">
+
+    <div class="col-3 d-flex align-items-center justify-content-start">
+      <a routerLink="/"><img class="img-fluid" src="/assets/images/logo.webp" alt="placeholder"></a>
     </div>
 
-    <div class="col-6">
+    <div class="col-6 d-flex align-items-center justify-content-center">
       @for(program of programs; track program.id){
       <a class="me-2" routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
       }
     </div>
 
-    <div class="col-3 d-flex align-items-center">
-      <form class="flex-grow-1 me-2">
-        <div class="input-group">
+    <div class="col-3 d-xl-flex d-sm-block align-items-center justify-content-end">
+      <form>
+        <div class="input-group flex-nowrap">
           <input [(ngModel)]="searchValue" name="searchBox" #searchInput
             (keyup.enter)="onSearchSubmit(searchInput.value)" class="form-control" type="text" placeholder="Wyszukaj...">
-          <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i
-              class="bi bi-search"></i>
-          </button>
+          <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i class="bi bi-search"></i></button>
         </div>
       </form>
-      <span><a routerLink="login">Zaloguj</a></span>
+      <span class="ms-2"><a routerLink="login">Zaloguj</a></span>
     </div>
-
+    
   </div>
 </nav>
