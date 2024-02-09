@@ -1,16 +1,16 @@
 <nav class="container-fluid shadow-sm mb-5 bg-body">
   <div class="row align-items-center justify-content-between pt-2 pb-2">
-    <div class="col-4 text-start">
+    <div class="col-3 text-start">
       <a routerLink="/"><img src="/assets/images/logo.webp" alt="placeholder"></a>
     </div>
 
-    <div class="col-4">
+    <div class="col-6">
       @for(program of programs; track program.id){
       <a class="me-2" routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
       }
     </div>
 
-    <div class="col-4 d-flex align-items-center">
+    <div class="col-3 d-flex align-items-center">
       <form class="flex-grow-1 me-2">
         <div class="input-group">
           <input [(ngModel)]="searchValue" name="searchBox" #searchInput
@@ -20,7 +20,7 @@
           </button>
         </div>
       </form>
-      <span><a routerLink="">Zaloguj</a></span>
+      <span><a routerLink="login">Zaloguj</a></span>
     </div>
 
   </div>
