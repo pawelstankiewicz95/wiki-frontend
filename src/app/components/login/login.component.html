@@ -1,18 +1,12 @@
-<form [formGroup]="form">
-    <fieldset>
-        <legend>Login</legend>
-        <div class="form-field">
-            <label>Email:</label>
-            <input name="email" formControlName="email">
-        </div>
-        <div class="form-field">
-            <label>Password:</label>
-            <input name="password" formControlName="password" 
-                   type="password">
-        </div>
-    </fieldset>
-    <div class="form-buttons">
-        <button class="button button-primary" 
-                (click)="login()">Login</button>
+<div class="d-flex justify-content-center">
+    <div class="card w-25 shadow-sm">
+        <form class="card-body" [formGroup]="form">
+            <h5 class="card-title mb-3">Zaloguj się</h5>
+            <input formControlName="username" type="text" class="form-control mb-2" id="inputUsername"
+                 placeholder="Nazwa użytkownika">
+            <input formControlName="password" type="password" class="form-control mb-3" id="inputPassword"
+                placeholder="Hasło">
+            <button type="submit" class="align-self-end btn btn-primary">Zaloguj</button>
+        </form>
     </div>
-</form>
+</div>
