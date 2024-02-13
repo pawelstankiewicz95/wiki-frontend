@@ -29,21 +29,15 @@ export class LoginComponent {
   }
 
   login() {
-    const val = this.form.value;
-
-    if (val.username && val.password) {
-      this.authService.login(val.username, val.password)
-      .subscribe({
+    if (this.form.valid) {
+      const val = this.form.value;
+      this.authService.login(val.username, val.password).subscribe({
         next: () => {
-          console.log("User is logged in");
+          console.log('Success');
           this.router.navigateByUrl('/');
         },
         error: (error) => {
-          if (error.status === 403) {
-            this.error = 'Niepoprawny login lub hasło';
-          } else {
-            this.error = 'Wystąpił błąd. Spróbuj ponownie.';
-          }
+          this.error = error.message;
         }
       });
     }
