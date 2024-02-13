@@ -26,6 +26,9 @@ export class TopNavBarComponent {
     if (sessionStorage.getItem('searchInput') != null) {
       this.searchValue = sessionStorage.getItem('searchInput')!;
     }
+    this.authService.isLoggedIn$.subscribe(
+      loggedIn => this.isLoggedIn = loggedIn
+    );
   }
 
   public getPrograms(): void {
@@ -35,6 +38,10 @@ export class TopNavBarComponent {
   public onSearchSubmit(searchInput: string) {
     this.router.navigateByUrl(`/search-subject/${searchInput}`);
     sessionStorage.setItem(searchInput, searchInput);
+  }
+
+  public logout() {
+    this.authService.logout();
   }
 
 }
