@@ -24,7 +24,7 @@ export class AuthService {
         return this.http.post<any>(`${this.apiUrl}authenticate`, credentials).pipe(
           tap(response => { 
             console.log('Logged in succefully')
-            const token = response as string;
+            const token = response.token;
             this.storeJwtToken(token);
             this.loggedIn.next(true)}), 
 
@@ -41,7 +41,12 @@ export class AuthService {
       }
 
     storeJwtToken(token: string): void {
+      if (typeof token === 'string') {
         localStorage.setItem('jwtToken', token);
+    } else {
+        // Convert the object to a string, for example using JSON.stringify
+        localStorage.setItem('jwtToken', JSON.stringify(token));
+    }
     }
 
     getJwtToken(): string | null {
