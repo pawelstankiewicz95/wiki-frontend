@@ -1,6 +1,6 @@
 <nav class="shadow-sm mb-5 bg-body">
-  <div class="row pt-2 pb-2">
-
+  <div class="row pt-2 pb-2 d-flex m-0">
+    @if (isLoggedIn) {
     <div class="col-3 d-flex align-items-center justify-content-start">
       <a routerLink="/"><img class="img-fluid" src="/assets/images/logo.webp" alt="placeholder"></a>
     </div>
@@ -19,12 +19,14 @@
           <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i class="bi bi-search"></i></button>
         </div>
       </form>
-      @if (isLoggedIn) {
-        <span class="ms-2"><button class="logout-button" (click)="logout()">Wyloguj</button></span>
-      }@else {
-      <span class="ms-2"><a routerLink="login">Zaloguj</a></span>
-    }
-    </div>
 
+        <span class="ms-2"><button class="logout-button" (click)="logout()">Wyloguj</button></span>
+      
+    </div>
+  }@else {
+  <div class="col-12 d-flex align-items-center justify-content-center">
+    <a routerLink="/"><img class="img-fluid" src="/assets/images/logo.webp" alt="placeholder"></a>
+  </div>
+}
   </div>
 </nav>

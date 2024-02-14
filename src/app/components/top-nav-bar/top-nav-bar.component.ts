@@ -22,13 +22,13 @@ export class TopNavBarComponent {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.getPrograms();
-    if (sessionStorage.getItem('searchInput') != null) {
-      this.searchValue = sessionStorage.getItem('searchInput')!;
-    }
-    this.authService.isLoggedIn$.subscribe(
-      loggedIn => this.isLoggedIn = loggedIn
-    );
+    
+    this.authService.isLoggedIn$.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+      if (loggedIn) {
+        this.getPrograms();
+      }
+    });
   }
 
   public getPrograms(): void {
