@@ -3,6 +3,7 @@ import { ProgramService } from '../../services/program.service';
 import { Program } from '../../models/program';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -15,14 +16,19 @@ export class TopNavBarComponent {
 
   public programs: Program[] = [];
   searchValue: string = "";
-  constructor(private programService: ProgramService, private router: Router) { }
+  isLoggedIn: boolean = false;
+  constructor(private programService: ProgramService, private router: Router, private authService: AuthService) { }
 
 
   ngOnInit(): void {
-    this.getPrograms();
-    if (sessionStorage.getItem('searchInput') != null) {
-      this.searchValue = sessionStorage.getItem('searchInput')!;
-    }
+    this.isLoggedIn = this.authService.isLoggedIn();
+    
+    this.authService.isLoggedIn$.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+      if (loggedIn) {
+        this.getPrograms();
+      }
+    });
   }
 
   public getPrograms(): void {
@@ -32,6 +38,10 @@ export class TopNavBarComponent {
   public onSearchSubmit(searchInput: string) {
     this.router.navigateByUrl(`/search-subject/${searchInput}`);
     sessionStorage.setItem(searchInput, searchInput);
+  }
+
+  public logout() {
+    this.authService.logout();
   }
 
 }

@@ -1,25 +1,32 @@
-<nav class="navbar navbar-light shadow-sm mb-5 bg-body justify-content-between">
-  <div class="container-fluid">
-      <div class="nav-item">
-        <a routerLink="/"><img src="/assets/images/logo.webp" alt="placeholder"></a>
-      </div>
-    
-      <div class="nav-item justify-content-between">
-            @for(program of programs; track program.id){
-            <button class="btn btn-transparent border-0">
-                <a routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
-            </button>
-            }
+<nav class="shadow-sm mb-5 bg-body">
+  <div class="row pt-2 pb-2 d-flex m-0">
+    @if (isLoggedIn) {
+    <div class="col-3 d-flex align-items-center justify-content-start">
+      <a routerLink="/"><img class="img-fluid" src="/assets/images/logo.webp" alt="placeholder"></a>
     </div>
 
-    <div class="nav-item">
-    <form>
-        <div class="input-group">
-        <input [(ngModel)]="searchValue" name="searchBox" #searchInput (keyup.enter)="onSearchSubmit(searchInput.value) " class="form-control" type="text" placeholder="Wyszukaj...">
-        <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i class="bi bi-search"></i>
-        </button>
-      </div>
-    </form>
+    <div class="col-6 d-flex align-items-center justify-content-center">
+      @for(program of programs; track program.id){
+      <a class="me-2" routerLink="program/{{ program.id }}" routerLinkActive="active">{{ program.name }}</a>
+      }
     </div>
+
+    <div class="col-3 d-xl-flex d-sm-block align-items-center justify-content-end">
+      <form>
+        <div class="input-group flex-nowrap">
+          <input [(ngModel)]="searchValue" name="searchBox" #searchInput
+            (keyup.enter)="onSearchSubmit(searchInput.value)" class="form-control" type="text" placeholder="Wyszukaj...">
+          <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i class="bi bi-search"></i></button>
+        </div>
+      </form>
+
+        <span class="ms-2"><button class="logout-button" (click)="logout()">Wyloguj</button></span>
+      
     </div>
+  }@else {
+  <div class="col-12 d-flex align-items-center justify-content-center">
+    <a routerLink="/"><img class="img-fluid" src="/assets/images/logo.webp" alt="placeholder"></a>
+  </div>
+}
+  </div>
 </nav>

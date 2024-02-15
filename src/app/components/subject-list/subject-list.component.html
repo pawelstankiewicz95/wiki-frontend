@@ -1,18 +1,20 @@
-<div class="d-flex flex-column align-items-between justify-content-center">
+<div class="d-flex flex-column  justify-content-center">
     <div>
-    @if (subjects.length === 0) {
-        <span>Brak wyników.</span>
-        }
-        <div class="row border mb-1">
-            <div class="col-2"><span>Data</span></div>
-            <div class="col-8"><span>Temat</span></div>
-            <div class="col-2"><span>Autor</span></div>
+
+        <div class="row border mb-1 d-flex justify-content-between">
+            <div class="col-2 text-center"><span>Data</span></div>
+            <div class="col-8 text-center"><span>Temat</span></div>
+            <div class="col-2 text-center"><span>Autor</span></div>
         </div>
-    
+
+        @if (subjects.length === 0) {
+            <span>Brak wyników.</span>
+            }
+            
         @for (subject of subjects; track $index) {
         <div class="row border shadow-sm mb-2 pt-3 pb-3  div-hover">
-            <div class="col-2">{{subject.timeCreated | date:'dd.MM.yyyy'}}</div>
-            <div class="col-8">@if (hasCategoryId) {
+            <div class="col-2 text-center">{{subject.timeCreated | date:'dd.MM.yyyy'}}</div>
+            <div class="col-8 text-center">@if (hasCategoryId) {
                 <a routerLink="subject/{{ subject.id }}" routerLinkActive="active">
                     <span>{{$index+1}}. {{subject.title}}</span>
                 </a>
@@ -23,7 +25,7 @@
                 </a>
                 }
             </div>
-            <div class="col-2">Jan Kowalski</div>
+            <div class="col-2 text-center">Jan Kowalski</div>
         </div>
         }
     </div>
