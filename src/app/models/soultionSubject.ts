@@ -1,7 +1,9 @@
+import { User } from "./user";
+
 export interface SolutionSubject {
     id: number;
-    //user: User; // to do
+    user?: User;
     title: string;
-    timeCreated: Date;
-    timeUpdated: Date;
+    timeCreated?: Date;
+    timeUpdated?: Date;
 }

@@ -53,9 +53,7 @@ export class EditSolutionComponent {
     let solution: Solution = {
       id: this.solution.id,
       description: formValues.description,
-      timeCreated: this.solution.timeCreated,
       timeUpdated: new Date(),
-      solutionSubject: this.solution.solutionSubject
     };
 
     this.solutionService.updateSolution(solution).subscribe({

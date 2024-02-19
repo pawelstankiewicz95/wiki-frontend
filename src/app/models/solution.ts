@@ -1,11 +1,12 @@
 import { SolutionSubject } from "./soultionSubject";
+import { User } from "./user";
 
 export interface Solution {
     id: number;
-    // user: User; //to do
+    user?: User;
     solutionSubject?: SolutionSubject;
     solutionSubjectId?: number;
     description: string;
-    timeCreated: Date;
+    timeCreated?: Date;
     timeUpdated: Date;
 }

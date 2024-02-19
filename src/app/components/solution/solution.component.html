@@ -8,7 +8,7 @@
             [queryParams]="{solutionId: solution.id}" routerLinkActive="hide">
             <i class="bi bi-pencil-square"></i>
         </button>
-        <div class="position-absolute bottom-0 end-0 mb-1 me-1 signature"><span class="me-2">Jan Kowalski</span> <span>{{solution.timeCreated | date:'dd-MM-yyyy'}}</span></div>
+        <div class="position-absolute bottom-0 end-0 mb-1 me-1 signature"><span class="me-2">{{solution.user?.firstName}} {{solution.user?.lastName}}</span> <span>{{solution.timeCreated | date:'dd-MM-yyyy'}}</span></div>
     </div>
     }
     
