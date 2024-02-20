@@ -4,15 +4,22 @@
     @for (solution of solutions; track $index) {
     <div class="card p-3 mb-2 shadow-sm w-75">
         <quill-view [content]="solution.description" format="html" theme="snow" class="card-body"></quill-view>
-        <button class="btn btn-link position-absolute top-0 end-0 mt-1 me-1" routerLink="edit-solution/"
+
+        <button class="btn btn-link position-absolute top-0 end-0 mt-1 me-2 p-0" (click)="delete(solution.id)">
+            <i class="bi bi-trash"></i>
+        </button>
+        <button class="btn btn-link position-absolute top-0 end-0 mt-1 me-5 p-0" routerLink="edit-solution/"
             [queryParams]="{solutionId: solution.id}" routerLinkActive="hide">
             <i class="bi bi-pencil-square"></i>
         </button>
-        <div class="position-absolute bottom-0 end-0 mb-1 me-1 signature"><span class="me-2">{{solution.user?.firstName}} {{solution.user?.lastName}}</span> <span>{{solution.timeCreated | date:'dd-MM-yyyy'}}</span></div>
+
+        <div class="position-absolute bottom-0 end-0 mb-1 me-1 signature"><span
+                class="me-2">{{solution.user?.firstName}} {{solution.user?.lastName}}</span>
+            <span>{{solution.timeCreated | date:'dd-MM-yyyy'}}</span></div>
     </div>
     }
-    
-    <button class="btn btn-primary mb-2" (click)="add()" [ngClass]="{'hide': buttonHidden}">Dodaj</button>
+
+    <button class="btn btn-primary mb-2" (click)="add()" [ngClass]="{'hide': isSaveButtonHidden}">Dodaj</button>
     <div class="w-75">
         <router-outlet></router-outlet>
     </div>
