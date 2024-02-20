@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { QuillModule } from 'ngx-quill';
@@ -16,7 +16,6 @@ import { Location } from '@angular/common';
   styleUrl: './create-solution-view.component.css'
 })
 export class CreateSolutionViewComponent {
-
 
   constructor(private formBuilder: FormBuilder,
     private solutionService: SolutionService,
@@ -56,11 +55,11 @@ export class CreateSolutionViewComponent {
         };
         console.log(solution);
         this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
-          next: (response) => {
+          next: () => {
             const url = this.router.url;    
             let updatedUrl = url.substring(0, url.lastIndexOf('/'));
             this.router.navigate([updatedUrl]) .then(() => {
-              window.location.reload();
+              this.solutionService.saveButtonHidden(false);
             });
           },
           error: (error) => console.log(error)
