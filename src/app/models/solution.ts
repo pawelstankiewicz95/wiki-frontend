@@ -8,5 +8,5 @@ export interface Solution {
     solutionSubjectId?: number;
     description: string;
     timeCreated?: Date;
-    timeUpdated: Date;
+    timeUpdated?: Date;
 }

@@ -51,7 +51,6 @@ export class CreateSolutionViewComponent {
           id: 0,
           description: formValues.description,
           timeCreated: new Date(),
-          timeUpdated: new Date()
         };
         console.log(solution);
         this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
