@@ -1,9 +1,22 @@
-<div class="container-fluid text-center px-0">
+@if(!isHome){
+<div class="container-fluid text-center px-0 mb-5">
     <div class="sticky-lg-top">
         <app-top-nav-bar></app-top-nav-bar>
     </div>
-       
 </div>
+
 <div class="container text-center">
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+</div>}
+@else{
+<div>
+    <div class="container-fluid text-center px-0 mb-1">
+        <div class="sticky-lg-top">
+            <app-top-nav-bar></app-top-nav-bar>
+        </div>
+    </div>
+    <div class="container-fluid text-center px-0">
+        <router-outlet></router-outlet>
+    </div>
 </div>
+}
