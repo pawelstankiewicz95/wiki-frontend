@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 import { ProgramListComponent } from './components/program-list/program-list.component'
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TopNavBarComponent, ProgramListComponent, RouterLink],
+  imports: [RouterOutlet, TopNavBarComponent, ProgramListComponent, RouterLink,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
