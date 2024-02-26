@@ -13,18 +13,17 @@
 </div>
 }
 @else{
-<div>
-
-    <div class="container-fluid text-center d-flex px-0 position-relative">
-        <div class="container-fluid text-center px-0 mb-1 position-absolute top-0">
-            <div class="sticky-lg-top">
-                <app-top-nav-bar></app-top-nav-bar>
-            </div>
+<div class="container-fluid text-center d-flex px-0 position-relative">
+    <div class="container-fluid text-center px-0 mb-1 position-absolute top-0">
+        <div class="sticky-lg-top">
+            <app-top-nav-bar></app-top-nav-bar>
         </div>
-        <router-outlet></router-outlet>
-        <div class="navbar fixed-bottom ms-1">
-            <span class="home-footer">&copy;Paweł Stankiewicz</span>
-        </div>
+    </div>
+    <div [style.margin-top]="marginTop">
+        <router-outlet class="router-outlet"></router-outlet>
+    </div>
+    <div class="navbar fixed-bottom ms-1">
+        <span class="home-footer">&copy;Pa</span>
     </div>
 </div>
 }

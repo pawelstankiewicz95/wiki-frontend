@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { ProgramService } from '../../services/program.service';
 import { Program } from '../../models/program';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './top-nav-bar.component.css'
 })
 export class TopNavBarComponent {
+  @ViewChild('navBar', { static: false }) navBar!: ElementRef;
 
   public programs: Program[] = [];
   searchValue: string = "";
@@ -32,8 +33,14 @@ export class TopNavBarComponent {
         this.getPrograms();
       }
     });
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isHome = this.router.url === '/home' || this.router.url === '/';
+      }
+    });
+
     this.isHome = this.router.url === '/home' || this.router.url === '/';
-    console.log(this.isHome);
   }
 
   public getPrograms(): void {
