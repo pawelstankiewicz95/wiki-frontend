@@ -13,15 +13,11 @@
 </div>
 }
 @else{
-<div class="container-fluid text-center d-flex px-0 position-relative">
-    <div class="container-fluid text-center px-0 mb-1 position-absolute top-0">
-        <div class="sticky-lg-top">
-            <app-top-nav-bar></app-top-nav-bar>
-        </div>
-    </div>
-    <div [style.margin-top]="marginTop">
-        <router-outlet class="router-outlet"></router-outlet>
-    </div>
+<div class="container-fluid text-center px-0">
+    <nav class="fixed-top">
+        <app-top-nav-bar></app-top-nav-bar>
+    </nav>
+    <router-outlet></router-outlet>
     <div class="navbar fixed-bottom ms-1">
         <span class="home-footer">&copy;Pa</span>
     </div>
