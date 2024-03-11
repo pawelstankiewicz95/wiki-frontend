@@ -1,1 +1,11 @@
-<p>announcements-list works!</p>
+ <div class="text-center">
+ @for (announcement of announcements; track $index){
+    <div class="card w-25 mb-3 mx-auto bg-body bg-opacity-75 border-danger" >
+        <div class="card-header border-danger text-danger fs-5">{{announcement.title}}</div>
+        <div class="card-body bg-transparent">
+          <p class="card-text fs-6">{{announcement.description}}</p>
+        </div>
+      </div>
+}
+</div>
+
