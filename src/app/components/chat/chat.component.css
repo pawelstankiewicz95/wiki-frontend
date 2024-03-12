@@ -1,12 +1,24 @@
-.message{
+.message {
     text-align: left;
+    margin-top: 0;
 }
-.signature{
+
+.signature {
     font-weight: 600;
     font-size: 14px;
     text-align: left;
+    margin-bottom: 0;
 }
-.date{
+
+.date {
     font-size: 11px;
     color: rgb(88, 88, 88);
+}
+
+.chat-body {
+    height: 300px;
+}
+
+#chat {
+    scroll-behavior: smooth;
 }

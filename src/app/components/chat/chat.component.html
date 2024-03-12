@@ -1,11 +1,14 @@
 <div class="card w-50 mx-auto">
     <div class="card-header"><span class="fs-5">Zapytaj na czacie</span></div>
-    <div class="card-body pt-1">
+    <div id="chat" class="card-body pt-1 pb-0 overflow-auto chat-body">
         @for (message of messages; track $index) {
 
-        <p class="ms-1 mb-1 signature">{{message.user.firstName}} {{message.user.lastName}} <span
+        <p class="signature">{{message.user?.firstName}} {{message.user?.lastName}} <span
                 class="date">{{message.timeCreated | date:'dd.MM.yyyy HH:mm':'UTC+2'}}</span></p>
-        <p class="ms-1 message">{{message.message}}</p>
+        <p class="message">{{message.message}}</p>
         }
     </div>
+
+<input id="text" class="form-control" placeholder="Napisz wiadomość..." autocomplete="off" (keyup.enter)="saveMessage()" type="text" [formControl]="text">
+
 </div>

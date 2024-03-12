@@ -16,7 +16,11 @@ export class MessageService {
   constructor(private httpClient: HttpClient) { }
 
   public getMessages(): Observable<Message[]> {
-    return this.httpClient.get<Message[]>(this.apiServerUrl);
+    return this.httpClient.get<Message[]>(this.apiServerUrl).pipe(
+      tap((messages) => {
+        this._messages.next(messages);
+      })
+    );
   }
 
   public saveMessage(message: Message): Observable<Message> {
