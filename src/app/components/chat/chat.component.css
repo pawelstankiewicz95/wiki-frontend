@@ -1,0 +1,12 @@
+.message{
+    text-align: left;
+}
+.signature{
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+}
+.date{
+    font-size: 11px;
+    color: rgb(88, 88, 88);
+}
