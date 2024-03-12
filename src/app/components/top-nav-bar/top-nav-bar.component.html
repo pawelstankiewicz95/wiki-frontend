@@ -1,4 +1,4 @@
-<nav class="shadow-sm mb-5 bg-body">
+<nav #navBar [ngClass]="{'home':isHome, 'shadow-sm':!isHome, 'bg-body':!isHome}">
   <div class="row pt-2 pb-2 d-flex m-0">
     @if (isLoggedIn) {
     <div class="col-3 d-flex align-items-center justify-content-start">
