@@ -25,6 +25,9 @@ export class CreateSolutionViewComponent {
 
   solutionForm!: FormGroup;
 
+  categoryId: number | undefined;
+
+
   editorStyle = {
     height: '300px',
     width: '100%',
@@ -55,16 +58,42 @@ export class CreateSolutionViewComponent {
         console.log(solution);
         this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
           next: () => {
-            const url = this.router.url;    
+            const url = this.router.url;
             let updatedUrl = url.substring(0, url.lastIndexOf('/'));
-            this.router.navigate([updatedUrl]) .then(() => {
+            this.router.navigate([updatedUrl]).then(() => {
               this.solutionService.saveButtonHidden(false);
             });
           },
           error: (error) => console.log(error)
         });
       } else {
-        console.error('Invalid subjectId');
+        this. categoryId = +params['categoryId'];
+        if (!isNaN(this.categoryId)) {
+          let solution: Solution = {
+            solutionSubject: {
+              id: 0,
+              title: 'test',
+              timeCreated: new Date()
+            },
+            id: 0,
+            description: formValues.description,
+            timeCreated: new Date()
+          };
+          console.log(solution);
+          this.solutionService.saveSolutionWithSubject(this.categoryId, solution).subscribe({
+            next: () => {
+              const url = this.router.url;
+              let updatedUrl = url.substring(0, url.lastIndexOf('/'));
+              this.router.navigate([updatedUrl]).then(() => {
+                this.solutionService.saveButtonHidden(false);
+              });
+            },
+            error: (error) => console.log(error)
+          });
+        } else {
+            console.log('error');
+        }
+
       }
     });
   }

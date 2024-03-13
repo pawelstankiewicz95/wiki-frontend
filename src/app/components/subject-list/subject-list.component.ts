@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { SolutionSubject } from '../../models/soultionSubject';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SolutionSubjectService } from '../../services/solution-subject.service';
 import { DatePipe } from '@angular/common';
+import { SolutionService } from '../../services/solution.service';
 
 @Component({
   selector: 'app-subject-list',
@@ -19,7 +20,7 @@ export class SubjectListComponent {
   categoryId: number = 1;
   searchValue: string = "";
 
-  constructor(private subjectService: SolutionSubjectService,  private route: ActivatedRoute){};
+  constructor(private subjectService: SolutionSubjectService, private solutionService: SolutionService,  private route: ActivatedRoute,     private router: Router){};
 
   ngOnInit(): void {
     this.handleShowingSubjects();
@@ -49,5 +50,20 @@ export class SubjectListComponent {
   public searchSubjectByTitle() {
     this.searchValue = this.route.snapshot.paramMap.get('searchParam')!;
     this.subjectService.getSubjectsByTitleLike(this.searchValue).subscribe((response: SolutionSubject[]) => this.subjects = response);
+  }
+
+  
+  public add(): void {
+    this.router.navigate([`./new-solution/`], { relativeTo: this.route, queryParams: { categoryId: this.categoryId } })
+      .then(() => {
+        this.solutionService.saveButtonHidden(true);
+        setTimeout(() => {
+          this.goToBottom();
+        }, 0);
+      });
+  }
+
+  goToBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
   }
 }
