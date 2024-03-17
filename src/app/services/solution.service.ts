@@ -13,8 +13,8 @@ export class SolutionService {
   private _solutions = new BehaviorSubject<Solution[]>([]);
   solutions$ = this._solutions.asObservable();
 
-  private isSaveButtonHidden = new BehaviorSubject<boolean>(false); // Initial state
-  isSaveButtonHidden$ = this.isSaveButtonHidden.asObservable();
+  private isAddButtonHidden = new BehaviorSubject<boolean>(false);
+  isAddButtonHidden$ = this.isAddButtonHidden.asObservable();
 
 
   constructor(private httpClient: HttpClient) { }
@@ -79,8 +79,8 @@ export class SolutionService {
   }
 
 
-  public saveButtonHidden(hidden: boolean) {
-    this.isSaveButtonHidden.next(hidden);
+  public addButtonHidden(hidden: boolean) {
+    this.isAddButtonHidden.next(hidden);
   }
 }
 

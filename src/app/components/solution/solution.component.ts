@@ -16,7 +16,7 @@ import { Observable, Subscription, of } from 'rxjs';
 export class SolutionComponent implements OnInit {
   public solutions: Solution[] = [];
   subjectId: number = 1;
-  isSaveButtonHidden: boolean = false;
+  isAddButtonHidden: boolean = false;
 
 
 
@@ -36,7 +36,7 @@ export class SolutionComponent implements OnInit {
           this.solutions = solutions;
         });
 
-        this.solutionService.isSaveButtonHidden$.subscribe(button => {this.isSaveButtonHidden = button})
+        this.solutionService.isAddButtonHidden$.subscribe(button => {this.isAddButtonHidden = button})
       }
     });
   }
@@ -50,7 +50,7 @@ export class SolutionComponent implements OnInit {
   public add(): void {
     this.router.navigate([`./new-solution/`], { relativeTo: this.route, queryParams: { subjectId: this.subjectId } })
       .then(() => {
-        this.solutionService.saveButtonHidden(true);
+        this.solutionService.addButtonHidden(true);
         setTimeout(() => {
           this.goToBottom();
         }, 0);
