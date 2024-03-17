@@ -25,6 +25,8 @@ export class ChatComponent {
     this.messageService.messages$.subscribe({
       next: (messages: Message[]) => {
         this.messages = messages;
+        this.changeDetectorRef.detectChanges();
+        this.scrollDown();
       },
       error: (err) => console.log(err)
     });
