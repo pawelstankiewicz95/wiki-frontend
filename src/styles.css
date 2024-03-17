@@ -15,10 +15,57 @@ a:hover {
     background-color: #a5324d;
     border: #a5324d;
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
     background-color: #992540;
 }
 
-.div-hover:hover{
+.div-hover:hover {
     background-color: #f3f3f3;
+}
+
+.ql-toolbar {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 0 !important;
+
+
+}
+
+.ql-container {
+    border: 0 !important;
+}
+
+.ql-editor {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
