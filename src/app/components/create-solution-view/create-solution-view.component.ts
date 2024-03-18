@@ -6,7 +6,7 @@ import { Solution } from '../../models/solution';
 import { SolutionService } from '../../services/solution.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SolutionSubjectService } from '../../services/solution-subject.service';
-
+import DOMPurify from 'dompurify';
 
 @Component({
   selector: 'app-create-solution-view',
@@ -56,15 +56,16 @@ export class CreateSolutionViewComponent implements OnInit {
 
   onSubmit() {
     const formValues = this.solutionForm.value;
+    const cleanDescription = DOMPurify.sanitize(formValues.description);
 
     this.activatedRoute.queryParams.subscribe(params => {
       const solutionSubjectId = +params['subjectId'];
       if (!isNaN(solutionSubjectId)) {
-        this.saveSolution(solutionSubjectId, formValues.description);
+        this.saveSolution(solutionSubjectId, cleanDescription);
       } else {
         this.categoryId = +params['categoryId'];
         if (!isNaN(this.categoryId)) {
-          this.saveSolutionWithSubject(this.categoryId, formValues.description);
+          this.saveSolutionWithSubject(this.categoryId, cleanDescription);
         } else {
           console.log('Error: Invalid parameters');
         }
