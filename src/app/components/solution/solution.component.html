@@ -3,7 +3,7 @@
 
     @for (solution of solutions; track $index) {
     <div class="card p-3 mb-2 shadow-sm w-75">
-        <quill-view [content]="solution.description" format="html" theme="snow" class="card-body"></quill-view>
+        <quill-view [content]="solution.description"></quill-view>
 
         <button class="btn btn-link position-absolute top-0 end-0 mt-1 me-2 p-0" (click)="delete(solution.id)">
             <i class="bi bi-trash"></i>
@@ -19,7 +19,7 @@
     </div>
     }
 
-    <button class="btn btn-primary mb-2" (click)="add()" [ngClass]="{'hide': isSaveButtonHidden}">Dodaj</button>
+    <button class="btn btn-primary mb-2" (click)="add()" [ngClass]="{'hide': isAddButtonHidden}">Dodaj</button>
     <div class="w-75">
         <router-outlet></router-outlet>
     </div>

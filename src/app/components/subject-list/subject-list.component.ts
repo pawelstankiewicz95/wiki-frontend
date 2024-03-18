@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { SolutionSubject } from '../../models/soultionSubject';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SolutionSubjectService } from '../../services/solution-subject.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
+import { SolutionService } from '../../services/solution.service';
 
 @Component({
   selector: 'app-subject-list',
   standalone: true,
-  imports: [RouterModule, DatePipe],
+  imports: [RouterModule, DatePipe, NgClass],
   templateUrl: './subject-list.component.html',
   styleUrl: './subject-list.component.css'
 })
@@ -18,8 +19,10 @@ export class SubjectListComponent {
   hasCategoryId: boolean = false;
   categoryId: number = 1;
   searchValue: string = "";
+  isAddButtonHidden: boolean = false;
 
-  constructor(private subjectService: SolutionSubjectService,  private route: ActivatedRoute){};
+
+  constructor(private subjectService: SolutionSubjectService, private solutionService: SolutionService,  private route: ActivatedRoute,     private router: Router){};
 
   ngOnInit(): void {
     this.handleShowingSubjects();
@@ -27,6 +30,7 @@ export class SubjectListComponent {
       this.categoryId = +params.get('categoryId')!
       this.searchValue = params.get('searchValue')!
       this.handleShowingSubjects();
+      this.subjectService.isAddButtonHidden$.subscribe(button => {this.isAddButtonHidden = button})
     });
   }
 
@@ -49,5 +53,20 @@ export class SubjectListComponent {
   public searchSubjectByTitle() {
     this.searchValue = this.route.snapshot.paramMap.get('searchParam')!;
     this.subjectService.getSubjectsByTitleLike(this.searchValue).subscribe((response: SolutionSubject[]) => this.subjects = response);
+  }
+
+  
+  public add(): void {
+    this.router.navigate([`./new-solution/`], { relativeTo: this.route, queryParams: { categoryId: this.categoryId } })
+      .then(() => {
+        this.subjectService.addButtonHidden(true);
+        setTimeout(() => {
+          this.goToBottom();
+        }, 0);
+      });
+  }
+
+  goToBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
   }
 }

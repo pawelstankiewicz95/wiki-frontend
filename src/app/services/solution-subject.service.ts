@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SolutionSubject } from '../models/soultionSubject';
 
 @Injectable({
@@ -9,6 +9,9 @@ import { SolutionSubject } from '../models/soultionSubject';
 export class SolutionSubjectService {
 
   private apiServerUrl = 'http://localhost:8080/api/subjects';
+
+  private isAddButtonHidden = new BehaviorSubject<boolean>(false);
+  isAddButtonHidden$ = this.isAddButtonHidden.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,4 +22,10 @@ export class SolutionSubjectService {
   public getSubjectsByTitleLike(title: string){
     return this.httpClient.get<SolutionSubject[]>(`${this.apiServerUrl}/search-by-title`, { params: { title: title } });
   }
+
+  
+  public addButtonHidden(hidden: boolean) {
+    this.isAddButtonHidden.next(hidden);
+  }
+
 }

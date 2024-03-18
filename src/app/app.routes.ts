@@ -12,7 +12,12 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [authGuard] },
     { path: 'search-subject/:searchParam', component: SubjectListComponent, canActivate: [authGuard] },
     { path: 'program/:programId', component: CategoryListComponent, canActivate: [authGuard] },
-    { path: 'program/:programId/category/:categoryId', component: SubjectListComponent, canActivate: [authGuard] },
+    {
+        path: 'program/:programId/category/:categoryId', component: SubjectListComponent, canActivate: [authGuard],
+        children: [
+            { path: 'new-solution', component: CreateSolutionViewComponent },
+        ]
+    },
     { path: 'program/:programId/category/:categoryId/subject/:subjectId/edit-solution', component: EditSolutionComponent, canActivate: [authGuard] },
     {
         path: 'search-subject/subject/:subjectId',
@@ -22,18 +27,15 @@ export const routes: Routes = [
             { path: 'edit-solution/:solutionId', component: EditSolutionComponent },
         ]
     },
-   // { path: 'search-subject/subject/:subjectId/edit-solution', component: EditSolutionComponent },
     {
         path: 'program/:programId/category/:categoryId/subject/:subjectId',
         component: SolutionComponent, canActivateChild: [authGuard],
         children: [
             { path: 'new-solution', component: CreateSolutionViewComponent },
-       //     { path: 'edit-solution/:solutionId', component: EditSolutionComponent },
         ]
     },
-   // { path: 'new-solution', component: CreateSolutionViewComponent },
-    { path: 'login', component: LoginComponent},
-    { path: '', component: HomeComponent, canActivate: [authGuard]},
+    { path: 'login', component: LoginComponent },
+    { path: '', component: HomeComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, canActivate: [authGuard] },
 
 ];
