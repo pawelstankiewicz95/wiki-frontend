@@ -3,8 +3,7 @@
 
     @for (solution of solutions; track $index) {
     <div class="card p-3 mb-2 shadow-sm w-75">
-        <p></p>
-        <span [innerHtml]="solution.description" style="margin: 0px; padding: 0px;"></span>
+        <quill-view [content]="solution.description"></quill-view>
 
         <button class="btn btn-link position-absolute top-0 end-0 mt-1 me-2 p-0" (click)="delete(solution.id)">
             <i class="bi bi-trash"></i>
