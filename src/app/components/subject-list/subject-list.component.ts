@@ -57,7 +57,7 @@ export class SubjectListComponent {
 
   
   public add(): void {
-    this.router.navigate([`./new-solution/`], { relativeTo: this.route, queryParams: { categoryId: this.categoryId } })
+    this.router.navigate([`./new-subject/`], { relativeTo: this.route, queryParams: { categoryId: this.categoryId } })
       .then(() => {
         this.subjectService.addButtonHidden(true);
         setTimeout(() => {

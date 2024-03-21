@@ -18,10 +18,9 @@ import DOMPurify from 'dompurify';
 export class CreateSolutionViewComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
-              private solutionService: SolutionService,
-              private subjectService: SolutionSubjectService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+    private solutionService: SolutionService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   solutionForm!: FormGroup;
   categoryId: number | undefined;
@@ -63,12 +62,7 @@ export class CreateSolutionViewComponent implements OnInit {
       if (!isNaN(solutionSubjectId)) {
         this.saveSolution(solutionSubjectId, cleanDescription);
       } else {
-        this.categoryId = +params['categoryId'];
-        if (!isNaN(this.categoryId)) {
-          this.saveSolutionWithSubject(this.categoryId, cleanDescription);
-        } else {
-          console.log('Error: Invalid parameters');
-        }
+        console.log('Error: Invalid parameters');
       }
     });
   }
@@ -89,27 +83,6 @@ export class CreateSolutionViewComponent implements OnInit {
     });
   }
 
-  saveSolutionWithSubject(categoryId: number, description: string) {
-    const solution: Solution = {
-      solutionSubject: {
-        id: 0,
-        title: this.subject.value!,
-        timeCreated: new Date()
-      },
-      id: 0,
-      description: description,
-      timeCreated: new Date()
-    };
-    console.log(solution);
-    this.solutionService.saveSolutionWithSubject(categoryId, solution).subscribe({
-      next: () => {
-        const updatedUrl = this.getUpdatedUrl();
-        this.navigateAndShowButton(updatedUrl, true);
-      },
-      error: (error) => console.log(error)
-    });
-  }
-
   getUpdatedUrl(): string {
     const url = this.router.url;
     return url.substring(0, url.lastIndexOf('/'));
@@ -117,11 +90,7 @@ export class CreateSolutionViewComponent implements OnInit {
 
   navigateAndShowButton(url: string, isSubject: boolean) {
     this.router.navigate([url]).then(() => {
-      if (isSubject) {
-        this.subjectService.addButtonHidden(false);
-      } else {
-        this.solutionService.addButtonHidden(false);
-      }
+      this.solutionService.addButtonHidden(false);
     });
   }
 }
