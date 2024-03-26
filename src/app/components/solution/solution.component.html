@@ -1,5 +1,5 @@
 <div class="d-flex flex-column align-items-center">
-    <span class="solution-title mb-3">{{solutions.at(0)?.solutionSubject?.title}}</span>
+    <span class="solution-title mb-3">{{subject?.title}}</span>
 
     @for (solution of solutions; track $index) {
     <div class="card p-3 mb-2 shadow-sm w-75">
