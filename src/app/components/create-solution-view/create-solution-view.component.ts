@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { ActivatedRoute, Router } from '@angular/router';
+import DOMPurify from 'dompurify';
 import { QuillModule } from 'ngx-quill';
 import { Solution } from '../../models/solution';
+import { SolutionSubject } from '../../models/soultionSubject';
 import { SolutionService } from '../../services/solution.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SolutionSubjectService } from '../../services/solution-subject.service';
-import DOMPurify from 'dompurify';
 
 @Component({
   selector: 'app-create-solution-view',
@@ -25,7 +25,6 @@ export class CreateSolutionViewComponent implements OnInit {
   solutionForm!: FormGroup;
   categoryId: number | undefined;
 
-  subject = new FormControl('');
 
   editorStyle = {
     height: '300px',
@@ -36,14 +35,6 @@ export class CreateSolutionViewComponent implements OnInit {
 
   ngOnInit() {
     this.handleFormGroup();
-    this.activatedRoute.queryParams.subscribe(params => {
-      const solutionSubjectId = +params['subjectId'];
-      if (!isNaN(solutionSubjectId)) {
-        this.categoryId = undefined;
-      } else {
-        this.categoryId = +params['categoryId'];
-      }
-    });
   }
 
   handleFormGroup() {
