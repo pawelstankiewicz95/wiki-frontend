@@ -30,6 +30,10 @@ export class SolutionSubjectService {
     return this.httpClient.get<SolutionSubject[]>(`${this.apiServerUrl}/search-by-title`, { params: { title: title } });
   }
 
+  public getSubjectById(subjectId: number){
+    return this.httpClient.get<SolutionSubject>(`${this.apiServerUrl}/${subjectId}`)
+  }
+
   public saveSubject(categoryId: number, subject: SolutionSubject): Observable<SolutionSubject> {
     const url = `${this.apiServerUrl}?categoryId=${categoryId}`;
     return this.httpClient.post<SolutionSubject>(url, subject)
