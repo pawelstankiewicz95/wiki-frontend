@@ -40,15 +40,14 @@ export class CreateSubjectComponent {
     }
     console.log(subject);
     this.subjectService.saveSubject(categoryId, subject).subscribe({
-      next: () => {
-        const updatedUrl = this.getUpdatedUrl();
-        this.navigateAndShowButton(updatedUrl);
+      next: (response) => {
+        this.router.navigate([this.getTrimedUrl() + '/subject/' + response.id + '/new-solution/'], { queryParams: { subjectId: response.id } })
       },
       error: (error) => console.log(error)
     });
   }
 
-  getUpdatedUrl(): string {
+  getTrimedUrl(): string {
     const url = this.router.url;
     return url.substring(0, url.lastIndexOf('/'));
   }
