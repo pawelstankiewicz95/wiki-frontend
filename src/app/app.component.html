@@ -1,15 +1,14 @@
 @if(!isHome){
-<div class="container-fluid text-center px-0 mb-5">
-    <div class="sticky-lg-top">
-        <app-top-nav-bar></app-top-nav-bar>
-    </div>
+<div class="container-fluid text-center px-0 mb-5 sticky-lg-top">
+    <app-top-nav-bar></app-top-nav-bar>
 </div>
 
 <div class="container text-center">
     <router-outlet></router-outlet>
 </div>
 
-<div class="navbar fixed-bottom ms-1"><span class="not-home-footer">&copy;Paweł Stankiewicz</span>
+<div class="not-home-footer">
+    <span>&copy;Pa</span>
 </div>
 }
 @else{
@@ -18,8 +17,8 @@
         <app-top-nav-bar></app-top-nav-bar>
     </nav>
     <router-outlet></router-outlet>
-    <div class="navbar fixed-bottom ms-1">
-        <span class="home-footer">&copy;Pa</span>
+    <div class="home-footer">
+        <span>&copy;Pa</span>
     </div>
 </div>
 }

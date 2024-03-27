@@ -1,9 +1,17 @@
 .home-footer {
     color: white;
     font-size: 11px;
+    position: fixed;
+    bottom: 0;
+    left: 2px;
+    width: auto;
 }
 
 .not-home-footer {
     color: black;
     font-size: 11px;
+    position: fixed;
+    bottom: 0;
+    left: 2px;
+    width: auto;
 }
