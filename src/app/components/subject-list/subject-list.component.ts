@@ -26,6 +26,7 @@ export class SubjectListComponent {
 
   ngOnInit(): void {
     this.handleShowingSubjects();
+    this.subjectService.addButtonHidden(false);
     this.route.paramMap.subscribe(params => {
       this.categoryId = +params.get('categoryId')!
       this.searchValue = params.get('searchValue')!

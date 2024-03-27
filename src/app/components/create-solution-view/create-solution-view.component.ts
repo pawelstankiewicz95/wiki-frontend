@@ -35,6 +35,7 @@ export class CreateSolutionViewComponent implements OnInit {
 
   ngOnInit() {
     this.handleFormGroup();
+    this.solutionService.addButtonHidden(true);
   }
 
   handleFormGroup() {
@@ -68,7 +69,7 @@ export class CreateSolutionViewComponent implements OnInit {
     this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
       next: () => {
         const updatedUrl = this.getUpdatedUrl();
-        this.navigateAndShowButton(updatedUrl, false);
+        this.navigate(updatedUrl);
       },
       error: (error) => console.log(error)
     });
@@ -79,9 +80,7 @@ export class CreateSolutionViewComponent implements OnInit {
     return url.substring(0, url.lastIndexOf('/'));
   }
 
-  navigateAndShowButton(url: string, isSubject: boolean) {
-    this.router.navigate([url]).then(() => {
-      this.solutionService.addButtonHidden(false);
-    });
+  navigate(url: string) {
+    this.router.navigate([url]);
   }
 }

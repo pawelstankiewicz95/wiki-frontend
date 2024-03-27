@@ -36,7 +36,7 @@ export class SolutionComponent implements OnInit {
         this.subjectId = +params.get('subjectId')!;
         this.getSolutionsBySubjectId();
         this.getSubject(this.subjectId);
-
+        this.solutionService.addButtonHidden(false);
         this.solutionService.solutions$.subscribe(solutions => {
           this.solutions = solutions;
         });
@@ -55,7 +55,7 @@ export class SolutionComponent implements OnInit {
   public add(): void {
     this.router.navigate([`./new-solution/`], { relativeTo: this.route, queryParams: { subjectId: this.subjectId } })
       .then(() => {
-        this.solutionService.addButtonHidden(true);
+        
         setTimeout(() => {
           this.goToBottom();
         }, 0);
