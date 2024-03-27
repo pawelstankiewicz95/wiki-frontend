@@ -20,6 +20,9 @@ export class CreateSubjectComponent {
     private subjectService: SolutionSubjectService,
     private router: Router) { }
 
+  ngOnInit() {
+    this.subjectService.addButtonHidden(true);
+  }
 
   onSubmit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -51,12 +54,5 @@ export class CreateSubjectComponent {
     const url = this.router.url;
     return url.substring(0, url.lastIndexOf('/'));
   }
-
-  navigateAndShowButton(url: string) {
-    this.router.navigate([url]).then(() => {
-      this.subjectService.addButtonHidden(false);
-    });
-  }
-
 
 }
