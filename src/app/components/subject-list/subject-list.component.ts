@@ -67,6 +67,14 @@ export class SubjectListComponent {
       });
   }
 
+  public delete(subjectId: number) {
+    this.solutionService.deleteSolution(subjectId)
+      .subscribe({
+        next: (response) => console.log('Item deleted:', response),
+        error: (err) => console.log(err)
+      });
+  }
+
   goToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
   }
