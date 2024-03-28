@@ -7,6 +7,7 @@ import { CreateSolutionViewComponent } from './components/create-solution-view/c
 import { EditSolutionComponent } from './components/edit-solution/edit-solution.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guard/auth-guard.guard';
+import { CreateSubjectComponent } from './components/create-subject/create-subject.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [authGuard] },
@@ -15,7 +16,7 @@ export const routes: Routes = [
     {
         path: 'program/:programId/category/:categoryId', component: SubjectListComponent, canActivate: [authGuard],
         children: [
-            { path: 'new-solution', component: CreateSolutionViewComponent },
+            { path: 'new-subject', component: CreateSubjectComponent },
         ]
     },
     { path: 'program/:programId/category/:categoryId/subject/:subjectId/edit-solution', component: EditSolutionComponent, canActivate: [authGuard] },

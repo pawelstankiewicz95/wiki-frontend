@@ -1,10 +1,11 @@
+import { CommonModule, DatePipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Solution } from '../../models/solution';
-import { SolutionService } from '../../services/solution.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
-import { CommonModule, DatePipe, NgClass } from '@angular/common';
-import { Observable, Subscription, of } from 'rxjs';
+import { Solution } from '../../models/solution';
+import { SolutionSubject } from '../../models/soultionSubject';
+import { SolutionSubjectService } from '../../services/solution-subject.service';
+import { SolutionService } from '../../services/solution.service';
 
 @Component({
   selector: 'app-solution',
@@ -15,12 +16,15 @@ import { Observable, Subscription, of } from 'rxjs';
 })
 export class SolutionComponent implements OnInit {
   public solutions: Solution[] = [];
+  public subject: SolutionSubject | undefined;
   subjectId: number = 1;
   isAddButtonHidden: boolean = false;
 
 
 
-  constructor(private solutionService: SolutionService,
+  constructor(
+    private subjectService: SolutionSubjectService,
+    private solutionService: SolutionService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -31,7 +35,8 @@ export class SolutionComponent implements OnInit {
       if (params.has('subjectId')) {
         this.subjectId = +params.get('subjectId')!;
         this.getSolutionsBySubjectId();
-
+        this.getSubject(this.subjectId);
+        this.solutionService.addButtonHidden(false);
         this.solutionService.solutions$.subscribe(solutions => {
           this.solutions = solutions;
         });
@@ -50,7 +55,7 @@ export class SolutionComponent implements OnInit {
   public add(): void {
     this.router.navigate([`./new-solution/`], { relativeTo: this.route, queryParams: { subjectId: this.subjectId } })
       .then(() => {
-        this.solutionService.addButtonHidden(true);
+        
         setTimeout(() => {
           this.goToBottom();
         }, 0);
@@ -66,6 +71,10 @@ export class SolutionComponent implements OnInit {
 
   goToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  public getSubject(id: number): void{
+    this.subjectService.getSubjectById(id).subscribe((response: SolutionSubject) => this.subject = response);
   }
   
 }

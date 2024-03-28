@@ -1,11 +1,33 @@
- <div class="text-center">
- @for (announcement of announcements; track $index){
-    <div class="card w-25 mb-3 mx-auto bg-body border-danger" >
-        <div class="card-header border-danger text-danger fs-5">{{announcement.title}}</div>
-        <div class="card-body bg-transparent">
-          <p class="card-text fs-6">{{announcement.description}}</p>
-        </div>
-      </div>
-}
-</div>
+<div class="text-center">
 
+  <div id="carousel" class="carousel slide w-50 mx-auto" data-bs-ride="false">
+    <div class="carousel-indicators">
+      @for (announcement of announcements; track announcement; let i = $index) {
+      <button type="button" data-bs-target="#carousel" attr.data-bs-slide-to="{{i}}" [class.active]="i === 0" aria-current="true"
+        aria-label="Slide 1"></button>
+      }
+    </div>
+
+      <div id="carousel" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-inner">
+          @for (announcement of announcements; track announcement; let i = $index) {
+          <div class="carousel-item" [class.active]="i === 0">
+            <div class="card w-75 mx-auto bg-body border-danger">
+              <div class="card-header border-danger text-danger fs-5">{{announcement.title}}</div>
+              <div class="card-body bg-transparent">
+                <p class="card-text fs-6">{{announcement.description}}</p>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</div>

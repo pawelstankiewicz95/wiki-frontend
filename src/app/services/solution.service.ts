@@ -46,17 +46,6 @@ export class SolutionService {
       );
   }
 
-  public saveSolutionWithSubject(categoryId: number, solution: Solution): Observable<Solution> {
-    const url = `${this.apiServerUrl}/with-subject?categoryId=${categoryId}`;
-    return this.httpClient.post<Solution>(url, solution)
-      .pipe(
-        tap((savedSolution: Solution) => {
-          const currentSolutions = this._solutions.getValue();
-          this._solutions.next([...currentSolutions, savedSolution]);
-        })
-      );
-  }
-
   public updateSolution(solution: Solution): Observable<Solution> {
     const url = `${this.apiServerUrl}`;
     return this.httpClient.put<Solution>(url, solution)
@@ -77,7 +66,6 @@ export class SolutionService {
         this.updateSolutions(updatedSolutions);
       }));
   }
-
 
   public addButtonHidden(hidden: boolean) {
     this.isAddButtonHidden.next(hidden);

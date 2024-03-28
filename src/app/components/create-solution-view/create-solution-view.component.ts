@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { ActivatedRoute, Router } from '@angular/router';
+import DOMPurify from 'dompurify';
 import { QuillModule } from 'ngx-quill';
 import { Solution } from '../../models/solution';
+import { SolutionSubject } from '../../models/soultionSubject';
 import { SolutionService } from '../../services/solution.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SolutionSubjectService } from '../../services/solution-subject.service';
-import DOMPurify from 'dompurify';
 
 @Component({
   selector: 'app-create-solution-view',
@@ -18,15 +18,13 @@ import DOMPurify from 'dompurify';
 export class CreateSolutionViewComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
-              private solutionService: SolutionService,
-              private subjectService: SolutionSubjectService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+    private solutionService: SolutionService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   solutionForm!: FormGroup;
   categoryId: number | undefined;
 
-  subject = new FormControl('');
 
   editorStyle = {
     height: '300px',
@@ -37,14 +35,7 @@ export class CreateSolutionViewComponent implements OnInit {
 
   ngOnInit() {
     this.handleFormGroup();
-    this.activatedRoute.queryParams.subscribe(params => {
-      const solutionSubjectId = +params['subjectId'];
-      if (!isNaN(solutionSubjectId)) {
-        this.categoryId = undefined;
-      } else {
-        this.categoryId = +params['categoryId'];
-      }
-    });
+    this.solutionService.addButtonHidden(true);
   }
 
   handleFormGroup() {
@@ -63,12 +54,7 @@ export class CreateSolutionViewComponent implements OnInit {
       if (!isNaN(solutionSubjectId)) {
         this.saveSolution(solutionSubjectId, cleanDescription);
       } else {
-        this.categoryId = +params['categoryId'];
-        if (!isNaN(this.categoryId)) {
-          this.saveSolutionWithSubject(this.categoryId, cleanDescription);
-        } else {
-          console.log('Error: Invalid parameters');
-        }
+        console.log('Error: Invalid parameters');
       }
     });
   }
@@ -83,28 +69,7 @@ export class CreateSolutionViewComponent implements OnInit {
     this.solutionService.saveSolution(solutionSubjectId, solution).subscribe({
       next: () => {
         const updatedUrl = this.getUpdatedUrl();
-        this.navigateAndShowButton(updatedUrl, false);
-      },
-      error: (error) => console.log(error)
-    });
-  }
-
-  saveSolutionWithSubject(categoryId: number, description: string) {
-    const solution: Solution = {
-      solutionSubject: {
-        id: 0,
-        title: this.subject.value!,
-        timeCreated: new Date()
-      },
-      id: 0,
-      description: description,
-      timeCreated: new Date()
-    };
-    console.log(solution);
-    this.solutionService.saveSolutionWithSubject(categoryId, solution).subscribe({
-      next: () => {
-        const updatedUrl = this.getUpdatedUrl();
-        this.navigateAndShowButton(updatedUrl, true);
+        this.navigate(updatedUrl);
       },
       error: (error) => console.log(error)
     });
@@ -115,13 +80,7 @@ export class CreateSolutionViewComponent implements OnInit {
     return url.substring(0, url.lastIndexOf('/'));
   }
 
-  navigateAndShowButton(url: string, isSubject: boolean) {
-    this.router.navigate([url]).then(() => {
-      if (isSubject) {
-        this.subjectService.addButtonHidden(false);
-      } else {
-        this.solutionService.addButtonHidden(false);
-      }
-    });
+  navigate(url: string) {
+    this.router.navigate([url]);
   }
 }

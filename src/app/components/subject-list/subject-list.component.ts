@@ -26,6 +26,7 @@ export class SubjectListComponent {
 
   ngOnInit(): void {
     this.handleShowingSubjects();
+    this.subjectService.addButtonHidden(false);
     this.route.paramMap.subscribe(params => {
       this.categoryId = +params.get('categoryId')!
       this.searchValue = params.get('searchValue')!
@@ -57,7 +58,7 @@ export class SubjectListComponent {
 
   
   public add(): void {
-    this.router.navigate([`./new-solution/`], { relativeTo: this.route, queryParams: { categoryId: this.categoryId } })
+    this.router.navigate([`./new-subject/`], { relativeTo: this.route, queryParams: { categoryId: this.categoryId } })
       .then(() => {
         this.subjectService.addButtonHidden(true);
         setTimeout(() => {
