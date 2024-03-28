@@ -68,7 +68,7 @@ export class SubjectListComponent {
   }
 
   public delete(subjectId: number) {
-    this.solutionService.deleteSolution(subjectId)
+    this.subjectService.deleteSubject(subjectId)
       .subscribe({
         next: (response) => console.log('Item deleted:', response),
         error: (err) => console.log(err)
