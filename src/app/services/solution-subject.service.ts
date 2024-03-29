@@ -53,4 +53,14 @@ export class SolutionSubjectService {
     this._subjects.next(updatedSubjects);
   }
 
+  public deleteSubject(subjectId: number): Observable<void> {
+    const url = `${this.apiServerUrl}?subjectId=${subjectId}`;
+    return this.httpClient.delete<void>(url)
+      .pipe(map(() => {
+        const currentSubjects = this._subjects.getValue();
+        const updatedSolutions = currentSubjects.filter(subject => subject.id !== subjectId);
+        this.updateSubjects(updatedSolutions);
+      }));
+  }
+
 }

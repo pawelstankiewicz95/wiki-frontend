@@ -32,6 +32,9 @@ export class SubjectListComponent {
       this.searchValue = params.get('searchValue')!
       this.handleShowingSubjects();
       this.subjectService.isAddButtonHidden$.subscribe(button => {this.isAddButtonHidden = button})
+      this.subjectService.subjects$.subscribe(subjects => {
+        this.subjects = subjects;
+      });
     });
   }
 
@@ -64,6 +67,14 @@ export class SubjectListComponent {
         setTimeout(() => {
           this.goToBottom();
         }, 0);
+      });
+  }
+
+  public delete(subjectId: number) {
+    this.subjectService.deleteSubject(subjectId)
+      .subscribe({
+        next: (response) => console.log('Item deleted:', response),
+        error: (err) => console.log(err)
       });
   }
 
