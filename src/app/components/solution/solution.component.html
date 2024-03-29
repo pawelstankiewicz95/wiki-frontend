@@ -5,9 +5,31 @@
     <div class="card p-3 mb-2 shadow-sm w-75">
         <quill-view [content]="solution.description"></quill-view>
 
-        <button class="btn btn-link position-absolute top-0 end-0 mt-1 me-2 p-0" (click)="delete(solution.id)">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-link position-absolute top-0 end-0 mt-1 me-2 p-0" data-bs-toggle="modal"
+            data-bs-target="#deleteModal">
             <i class="bi bi-trash"></i>
         </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Potwierdź usunięcie</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <span>Czy na pewno chcesz usunąć ten element?</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            (click)="delete(solution.id) ">Usuń</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button class="btn btn-link position-absolute top-0 end-0 mt-1 me-5 p-0" routerLink="edit-solution/"
             [queryParams]="{solutionId: solution.id}" routerLinkActive="hide">
             <i class="bi bi-pencil-square"></i>
@@ -15,7 +37,8 @@
 
         <div class="position-absolute bottom-0 end-0 mb-1 me-1 signature"><span
                 class="me-2">{{solution.user?.firstName}} {{solution.user?.lastName}}</span>
-            <span>{{solution.timeCreated | date:'dd.MM.yyyy, HH:mm':'UTC+2'}}</span></div>
+            <span>{{solution.timeCreated | date:'dd.MM.yyyy, HH:mm':'UTC+2'}}</span>
+        </div>
     </div>
     }
 
