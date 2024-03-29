@@ -32,6 +32,9 @@ export class SubjectListComponent {
       this.searchValue = params.get('searchValue')!
       this.handleShowingSubjects();
       this.subjectService.isAddButtonHidden$.subscribe(button => {this.isAddButtonHidden = button})
+      this.subjectService.subjects$.subscribe(subjects => {
+        this.subjects = subjects;
+      });
     });
   }
 
