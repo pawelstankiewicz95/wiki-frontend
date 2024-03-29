@@ -2,9 +2,10 @@
     <div class="w-100">
 
         <div class="row border mb-1 d-flex justify-content-between">
-            <div class="col-2 text-center"><span>Data</span></div>
+            <div class="col-1 text-center"><span>Data</span></div>
             <div class="col-8 text-center"><span>Temat</span></div>
             <div class="col-2 text-center"><span>Autor</span></div>
+            <div class="col-1 text-end"><span>Akcje</span></div>
 
         </div>
 
@@ -15,36 +16,12 @@
         @for (subject of subjects; track $index) {
         <div class="row border shadow-sm mb-2 pt-3 pb-3  div-hover">
 
-            <div class="col-2 text-center">{{subject.timeCreated | date:'dd.MM.yyyy'}}</div>
+            <div class="col-1 text-center">{{subject.timeCreated | date:'dd.MM.yyyy'}}</div>
             <div class="col-8 text-center">@if (hasCategoryId) {
                 <a routerLink="subject/{{ subject.id }}" routerLinkActive="active">
-                    <span>{{$index+1}}. {{subject.title}}</span>
+                    <span>{{subject.title}}</span>
                 </a>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-link me-2 p-0" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                    <i class="bi bi-trash"></i>
-                </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Potwierdź usunięcie</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <span>Czy na pewno chcesz usunąć ten element?</span>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="delete(subject.id) ">Usuń</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 }
                 @if (hasSearchParameter) {
                 <a routerLink="/search-subject/subject/{{ subject.id }}" routerLinkActive="active">
@@ -53,6 +30,35 @@
                 }
             </div>
             <div class="col-2 text-center">{{subject.user?.firstName}} {{subject.user?.lastName}}</div>
+            <div class="col-1 text-end"> <!-- Button trigger modal -->
+                <button type="button" class="btn btn-link me-2 p-0" data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#deleteModal' + $index">
+                    <i class="bi bi-trash"></i>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" [id]="'deleteModal' + $index" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Potwierdź usunięcie</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-start">
+                                <span>Czy na pewno chcesz usunąć ten element?</span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                    (click)="delete(subject.id) ">Usuń</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
 
