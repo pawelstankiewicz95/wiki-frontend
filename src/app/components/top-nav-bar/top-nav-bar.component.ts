@@ -5,6 +5,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -20,7 +21,15 @@ export class TopNavBarComponent {
   searchValue: string = "";
   isLoggedIn: boolean = false;
   public isHome: boolean = false;
-  constructor(private programService: ProgramService, public router: Router, private authService: AuthService, private ref: ChangeDetectorRef) {
+  public username: string | null = null;
+  public userRole: string = '';
+
+  constructor(
+    private programService: ProgramService,
+    public router: Router,
+    private authService: AuthService,
+    private ref: ChangeDetectorRef,
+    private userService: UserService) {
 
   }
 
@@ -30,6 +39,16 @@ export class TopNavBarComponent {
     this.authService.isLoggedIn$.subscribe(loggedIn => {
       this.isLoggedIn = loggedIn;
       if (loggedIn) {
+        this.authService.user$.subscribe(username => {
+          if (username) {
+            this.userService.getRole(username).subscribe(role => {
+              this.userRole = role,
+              console.log(role)
+            });
+          }
+          this.username = username
+          console.log(username)
+        })
         this.getPrograms();
       }
     });
