@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
-import { SolutionService } from '../../services/solution.service';
+import { SolutionService } from '../../../services/solution.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Solution } from '../../models/solution';
+import { Solution } from '../../../models/solution';
 import { Location } from '@angular/common';
 
 @Component({

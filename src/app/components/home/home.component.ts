@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AnnouncementsListComponent } from "../announcements-list/announcements-list.component";
+import { AnnouncementsListComponent } from "../announcements/announcements-list/announcements-list.component";
 import { ChatComponent } from "../chat/chat.component";
 
 @Component({

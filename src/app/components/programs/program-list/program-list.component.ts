@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Program } from '../../models/program';
-import { ProgramService } from '../../services/program.service';
+import { Program } from '../../../models/program';
+import { ProgramService } from '../../../services/program.service';
 
 @Component({
   selector: 'app-program-list',

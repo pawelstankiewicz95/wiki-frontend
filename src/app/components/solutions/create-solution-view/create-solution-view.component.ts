@@ -4,9 +4,9 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 import { ActivatedRoute, Router } from '@angular/router';
 import DOMPurify from 'dompurify';
 import { QuillModule } from 'ngx-quill';
-import { Solution } from '../../models/solution';
-import { SolutionSubject } from '../../models/soultionSubject';
-import { SolutionService } from '../../services/solution.service';
+import { Solution } from '../../../models/solution';
+import { SolutionSubject } from '../../../models/soultionSubject';
+import { SolutionService } from '../../../services/solution.service';
 
 @Component({
   selector: 'app-create-solution-view',
