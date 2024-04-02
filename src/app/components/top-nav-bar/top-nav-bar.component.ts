@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -41,11 +42,13 @@ export class TopNavBarComponent {
       if (loggedIn) {
         this.authService.user$.subscribe(username => {
           if (username) {
-            this.userService.getRole(username).subscribe(role => {
-              this.userRole = role,
-              console.log(role)
+            this.userService.getRole(username).pipe(
+                map((response: any) => response.role) // Extracting the 'role' property from the response
+            ).subscribe(role => {
+                this.userRole = role; // Assigning the role to a variable
+                console.log(this.userRole); // Logging the role value
             });
-          }
+        }
           this.username = username
           console.log(username)
         })
