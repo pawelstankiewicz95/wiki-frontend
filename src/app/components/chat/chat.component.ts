@@ -62,7 +62,6 @@ export class ChatComponent {
   }
 
   scrollDown() {
-    console.log('scroll down');
     const element = document.getElementById('chat')!;
     element.scrollTop = element.scrollHeight;
   }

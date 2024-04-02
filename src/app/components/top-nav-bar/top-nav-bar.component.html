@@ -15,18 +15,31 @@
       <form>
         <div class="input-group flex-nowrap">
           <input [(ngModel)]="searchValue" name="searchBox" #searchInput
-            (keyup.enter)="onSearchSubmit(searchInput.value)" class="form-control" type="text" placeholder="Wyszukaj...">
+            (keyup.enter)="onSearchSubmit(searchInput.value)" class="form-control" type="text"
+            placeholder="Wyszukaj...">
           <button class="btn btn-primary" (click)="onSearchSubmit(searchInput.value)" type="submit"><i class="bi bi-search"></i></button>
         </div>
       </form>
 
-        <span class="ms-2"><button class="logout-button" (click)="logout()">Wyloguj</button></span>
+      @if (userRole === 'ROLE_ADMIN') {
+        <div class="btn-group">
+          <a type="button" class="logout-button" data-bs-toggle="dropdown" aria-expanded="false">
+            ADMIN<i class="ms-2 bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button routerLink="/admin-dashboard" class="dropdown-item" type="button">Panel administatora</button></li>
+            <li><hr class="dropdown-divider"></li>
+            <button class="dropdown-item" (click)="logout()">Wyloguj</button>
+          </ul>
+        </div>
+      }@else {<span class="ms-2"><button class="logout-button" (click)="logout()">Wyloguj</button></span>}
       
+
     </div>
-  }@else {
-  <div class="col-12 d-flex align-items-center justify-content-center">
-    <a routerLink="/"><img class="img-fluid" src="/assets/images/logo.webp" alt="placeholder"></a>
-  </div>
-}
+    }@else {
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <a routerLink="/"><img class="img-fluid" src="/assets/images/logo.webp" alt="placeholder"></a>
+    </div>
+    }
   </div>
 </nav>

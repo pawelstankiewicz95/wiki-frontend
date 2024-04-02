@@ -8,6 +8,8 @@ import { EditSolutionComponent } from './components/edit-solution/edit-solution.
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guard/auth-guard.guard';
 import { CreateSubjectComponent } from './components/create-subject/create-subject.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { UsersComponent } from './components/admin-dashboard/users/users.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [authGuard] },
@@ -35,6 +37,10 @@ export const routes: Routes = [
             { path: 'new-solution', component: CreateSolutionViewComponent },
         ]
     },
+    { path: 'admin-dashboard', component: AdminDashboardComponent, 
+        children: [
+            {path: 'users', component: UsersComponent}
+        ]},
     { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, canActivate: [authGuard] },

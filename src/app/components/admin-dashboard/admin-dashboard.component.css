@@ -1,0 +1,15 @@
+a {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .active {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-color: #830D28;
+    text-decoration-thickness: 2px;
+  }

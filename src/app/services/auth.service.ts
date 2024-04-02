@@ -13,6 +13,10 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.hasValidToken());
   isLoggedIn$ = this.loggedIn.asObservable();
 
+  private user = new BehaviorSubject<string|null>(this.getSubjectFromToken());
+  user$ = this.user.asObservable();
+
+
   constructor(private http: HttpClient, private router: Router) { }
 
   hasValidToken(): boolean {
@@ -79,6 +83,15 @@ export class AuthService {
     } catch (err) {
       return false;
     }
+  }
+
+  getSubjectFromToken(): string | null {
+    const token = this.getJwtToken();
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      return decoded.sub;
+    }
+    return null;
   }
 
 }

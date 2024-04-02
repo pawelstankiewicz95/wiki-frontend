@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements AfterViewChecked {
+export class AppComponent{
   @ViewChild(TopNavBarComponent, { static: false }) topNavBar!: TopNavBarComponent;
   public marginTop: string = '0px'; // Initialize marginTop
 
@@ -27,21 +27,4 @@ export class AppComponent implements AfterViewChecked {
     });
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.adjustMargin();
-  }
-
-
-  ngAfterViewChecked(): void {
-    this.adjustMargin();
-  }
-
-  adjustMargin(): void {
-    if (this.topNavBar && this.topNavBar.navBar) {
-      const navHeight = this.topNavBar.navBar.nativeElement.offsetHeight;
-      this.marginTop = navHeight + 100 + 'px'; // Update marginTop
-      console.log(this.marginTop);
-    }
-  }
 }
