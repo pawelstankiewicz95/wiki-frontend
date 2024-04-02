@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SolutionSubject } from '../../models/soultionSubject';
-import { SolutionSubjectService } from '../../services/solution-subject.service';
+import { SolutionSubject } from '../../../models/soultionSubject';
+import { SolutionSubjectService } from '../../../services/solution-subject.service';
 import DOMPurify from 'dompurify';
 
 @Component({

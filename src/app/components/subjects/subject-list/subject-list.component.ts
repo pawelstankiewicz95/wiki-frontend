@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { SolutionSubject } from '../../models/soultionSubject';
+import { SolutionSubject } from '../../../models/soultionSubject';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { SolutionSubjectService } from '../../services/solution-subject.service';
+import { SolutionSubjectService } from '../../../services/solution-subject.service';
 import { DatePipe, NgClass } from '@angular/common';
-import { SolutionService } from '../../services/solution.service';
+import { SolutionService } from '../../../services/solution.service';
 
 @Component({
   selector: 'app-subject-list',

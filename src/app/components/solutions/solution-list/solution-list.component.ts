@@ -2,17 +2,17 @@ import { CommonModule, DatePipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
-import { Solution } from '../../models/solution';
-import { SolutionSubject } from '../../models/soultionSubject';
-import { SolutionSubjectService } from '../../services/solution-subject.service';
-import { SolutionService } from '../../services/solution.service';
+import { Solution } from '../../../models/solution';
+import { SolutionSubject } from '../../../models/soultionSubject';
+import { SolutionSubjectService } from '../../../services/solution-subject.service';
+import { SolutionService } from '../../../services/solution.service';
 
 @Component({
   selector: 'app-solution',
   standalone: true,
   imports: [RouterModule, QuillModule, DatePipe, NgClass, CommonModule],
-  templateUrl: './solution.component.html',
-  styleUrl: './solution.component.css'
+  templateUrl: './solution-list.component.html',
+  styleUrl: './solution-list.component.css'
 })
 export class SolutionComponent implements OnInit {
   public solutions: Solution[] = [];
