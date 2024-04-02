@@ -1,9 +1,8 @@
-a {
-    padding-right: 10px;
-    padding-left: 10px;
+.dropdown-header {
     color: black;
     text-decoration: none;
     font-weight: 600;
+    font-size: medium;
   }
 
   .active {
@@ -12,4 +11,5 @@ a {
     text-underline-offset: 5px;
     text-decoration-color: #830D28;
     text-decoration-thickness: 2px;
+    font-size: medium;
   }

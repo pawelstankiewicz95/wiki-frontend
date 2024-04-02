@@ -1,11 +1,21 @@
-<div>
-  <a href="#multiCollapseExample2" data-bs-toggle="collapse" aria-expanded="false"
-    aria-controls="multiCollapseExample2">Użytkownicy<i class="ms-2 bi bi-chevron-down"></i>
-  </a>
+<div class="row d-flex">
 
-  <div class="collapse multi-collapse" id="multiCollapseExample2">
-TEKST
-TEKST
-TEKST
+  <div class="col-3 d-flex justify-content-center align-items-start">
+    <div>
+      <a class="dropdown-header" href="#usersCollapse" data-bs-toggle="collapse" aria-expanded="false"
+        aria-controls="usersCollapse">
+        Użytkownicy<i class="ms-2 bi bi-chevron-down"></i>
+      </a>
+      <div class="collapse multi-collapse" id="usersCollapse">
+        <div class="d-flex flex-column ms-1">
+          <a routerLink="user-list">Lista</a>
+          <a routerLink="create-user">Dodaj</a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="col-6 d-flex justify-content-center align-items-center"><router-outlet></router-outlet></div>
+  
+  <div class="col-3 d-flex justify-content-center align-items-center"></div>
 </div>
