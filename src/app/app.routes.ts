@@ -9,6 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guard/auth-guard.guard';
 import { CreateSubjectComponent } from './components/subjects/create-subject/create-subject.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { CreateUserComponent } from './components/users/create-user/create-user.component';
+import { CreateAnnouncementComponent } from './components/announcements/create-announcement/create-announcement.component';
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [authGuard] },
     { path: 'search-subject/:searchParam', component: SubjectListComponent, canActivate: [authGuard] },
@@ -35,7 +38,12 @@ export const routes: Routes = [
             { path: 'new-solution', component: CreateSolutionViewComponent },
         ]
     },
-    { path: 'admin-dashboard', component: AdminDashboardComponent},
+    { path: 'admin-dashboard', component: AdminDashboardComponent,
+    children: [
+        { path: 'user-list', component: UserListComponent },
+        { path: 'create-user', component: CreateUserComponent },
+        { path: 'create-announcement', component: CreateAnnouncementComponent }
+    ]},
     { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, canActivate: [authGuard] },
