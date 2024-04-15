@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup , ReactiveFormsModule} from '@angular/forms';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,9 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ){}
 
   ngOnInit(){
@@ -38,7 +41,7 @@ export class RegisterComponent {
   onSubmit() {
     let user: User = this.registerForm.controls['user'].value;
     this.authService.registerUser(user).subscribe({
-      next: (response) => console.log(response),
+      next: () => this.router.navigate(['./success'],{relativeTo: this.activatedRoute}),
       error: (error) => console.log(error)
     });
   }

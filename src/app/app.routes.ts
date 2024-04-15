@@ -13,6 +13,7 @@ import { UserListComponent } from './components/users/user-list/user-list.compon
 import { CreateUserComponent } from './components/users/create-user/create-user.component';
 import { CreateAnnouncementComponent } from './components/announcements/create-announcement/create-announcement.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SuccessComponent } from './components/register/success/success.component';
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [authGuard] },
     { path: 'search-subject/:searchParam', component: SubjectListComponent, canActivate: [authGuard] },
@@ -39,14 +40,17 @@ export const routes: Routes = [
             { path: 'new-solution', component: CreateSolutionViewComponent },
         ]
     },
-    { path: 'admin-dashboard', component: AdminDashboardComponent,
-    children: [
-        { path: 'user-list', component: UserListComponent },
-        { path: 'create-user', component: CreateUserComponent },
-        { path: 'create-announcement', component: CreateAnnouncementComponent }
-    ]},
+    {
+        path: 'admin-dashboard', component: AdminDashboardComponent,
+        children: [
+            { path: 'user-list', component: UserListComponent },
+            { path: 'create-user', component: CreateUserComponent },
+            { path: 'create-announcement', component: CreateAnnouncementComponent }
+        ]
+    },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component:RegisterComponent},
+    { path: 'register', component: RegisterComponent, },
+    { path: 'register/success', component: SuccessComponent },
     { path: '', component: HomeComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, canActivate: [authGuard] },
 
