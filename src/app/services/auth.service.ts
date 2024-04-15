@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,12 @@ export class AuthService {
       })
     );
   }
+
+
+    public registerUser(user: User): Observable<User> {
+      return this.http.post<User>(`${this.apiUrl}register`, user);
+    }
+
 
   storeJwtToken(token: string): void {
     if (typeof token === 'string') {
