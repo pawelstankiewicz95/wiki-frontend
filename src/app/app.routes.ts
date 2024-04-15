@@ -12,6 +12,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { CreateUserComponent } from './components/users/create-user/create-user.component';
 import { CreateAnnouncementComponent } from './components/announcements/create-announcement/create-announcement.component';
+import { RegisterComponent } from './components/register/register.component';
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [authGuard] },
     { path: 'search-subject/:searchParam', component: SubjectListComponent, canActivate: [authGuard] },
@@ -45,6 +46,7 @@ export const routes: Routes = [
         { path: 'create-announcement', component: CreateAnnouncementComponent }
     ]},
     { path: 'login', component: LoginComponent },
+    { path: 'register', component:RegisterComponent},
     { path: '', component: HomeComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, canActivate: [authGuard] },
 

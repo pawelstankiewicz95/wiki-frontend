@@ -4,6 +4,7 @@
             <h5 class="mb-3">Zaloguj się</h5>
             <input formControlName="username" type="text" class="form-control mb-2" id="inputUsername" placeholder="Nazwa użytkownika">
             <input formControlName="password" type="password" class="form-control mb-3" id="inputPassword" placeholder="Hasło">
+            <p style="font-size: 0.875em;">Nie masz konta? <a routerLink="/register" class="register-link">Zarejestruj się</a></p>
             <button type="submit" class="btn btn-primary" (click)="login()">Zaloguj</button>
         </form>
     </div>
