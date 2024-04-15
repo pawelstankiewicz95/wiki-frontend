@@ -1,1 +1,23 @@
-<p>register works!</p>
+<div class="card-body">
+    <form [formGroup]="registerForm">
+        <div formGroupName="user">
+                <label for="username" class="col-md-2">Login</label>
+                <input formControlName="username" type="text" class="form-control" id="username">
+
+                <label for="email" class="col-md-2">E-mail</label>
+                <input formControlName="email" type="text" class="form-control" id="email">
+
+                <label for="password" class="col-md-2">Hasło</label>
+                <input formControlName="password" type="text" class="form-control" id="password">
+
+                <label for="firstName" class="col-md-2">Imię</label>
+                <input formControlName="firstName" type="text" class="form-control" id="firstName">
+
+                <label for="lastName" class="col-md-2">Nazwisko</label>
+                <input formControlName="lastName" type="text" class="form-control" id="lastName">
+        </div>
+    </form>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-outline-dark" (click)="onSubmit()">Załóż konto</button>
+    </div>
+</div>
