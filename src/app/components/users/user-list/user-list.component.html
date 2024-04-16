@@ -1,3 +1,16 @@
+<div class="row border mb-1 d-flex justify-content-between wh-100">
+    <div class="col-2 text-center"><span>Nazwa</span></div>
+    <div class="col-3 text-center"><span>Email</span></div>
+    <div class="col-3 text-center"><span>Imię</span></div>
+    <div class="col-2 text-center"><span>Nazwisko</span></div>
+    <div class="col-2 text-center"><span>Aktywuj</span></div>
+</div>
 @for (user of users; track $index) {
-    <p>{{user.username}}</p>
+    <div class="row border mb-1 d-flex justify-content-between">
+        <div class="col-2 text-center"><span>{{user.username}}</span></div>
+        <div class="col-3 text-center"><span>{{user.email}}</span></div>
+        <div class="col-3 text-center"><span>{{user.firstName}}</span></div>
+        <div class="col-2 text-center"><span>{{user.lastName}}</span></div>
+        <div class="col-2 text-center"><span>{{user.isEnabled}}</span></div>
+    </div>
 }
