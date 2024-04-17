@@ -1,0 +1,27 @@
+.activate {
+    color: green;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.activate:hover {
+    text-decoration: underline;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.deactivate {
+    color: red;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.deactivate:hover {
+    text-decoration: underline;
+    padding: 0;
+    border: none;
+    background: none;
+}
