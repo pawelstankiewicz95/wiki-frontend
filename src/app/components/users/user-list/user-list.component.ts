@@ -21,4 +21,13 @@ export class UserListComponent {
   getAllUsers(){
     this.userService.getAllUsers().subscribe((response: User[]) => this.users = response);
   }
+
+  updateUser(username: string, fields: any): void {
+    
+    this.userService.updateUserByFields(username, fields)
+      .subscribe({
+        next: (response: User) => console.log('User updated successfully:', response),
+        error: (err) => console.log(err)
+      })
+  }
 }

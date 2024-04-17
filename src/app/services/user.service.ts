@@ -19,5 +19,9 @@ export class UserService {
   public getAllUsers():Observable<User[]> {
     return this.httpClient.get<User[]>(this.apiServerUrl);
   }
+
+  updateUserByFields(username: string, fields: any): Observable<User> {
+    return this.httpClient.patch<User>(`${this.apiServerUrl}?username=${username}`, fields);
+  }
   
 }

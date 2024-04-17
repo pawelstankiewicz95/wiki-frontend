@@ -1,8 +1,8 @@
 export interface User {
-    username: String;
-    password: String;
-    email: String;
-    firstName: String;
-    lastName: String;
+    username: string;
+    password: string;
+    email: string;
+    firstName: string;
+    lastName: string;
     isEnabled: boolean;
 }
